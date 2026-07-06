@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="sw" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabeel — Maana ya Zakat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Mtindo wa bango la picha */
+  .fiq-banner {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 16px 40px rgba(7, 26, 14, 0.06);
+    border: 1px solid rgba(62, 203, 112, 0.12);
+  }
+  .fiq-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.95);
+  }
+
+  /* Mtindo wa ziada wa kurasa za ndani */
+  .fiq-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .fiq-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid rgba(62,203,112,.12);
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(7,26,14,.02);
+    margin-bottom: 2rem;
+  }
+  .fiq-sidebar {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+  }
+  .fiq-h3 {
+    font-family: var(--fs);
+    font-size: 1.4rem;
+    color: var(--g800);
+    margin: 1.5rem 0 0.8rem;
+  }
+  .fiq-p {
+    font-size: 0.98rem;
+    color: var(--g600t);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+  .asnaf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .asnaf-box {
+    background: var(--off);
+    border: 1px solid var(--g200);
+    border-radius: 6px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+  .asnaf-num {
+    font-family: var(--fs);
+    font-size: 1.2rem;
+    color: var(--g600);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .asnaf-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .verse-box {
+    background: var(--g50);
+    border-right: 4px solid var(--g500);
+    border-left: 4px solid var(--g500);
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .verse-ar {
+    font-family: var(--fa);
+    font-size: 1.25rem;
+    color: var(--g800);
+    margin-bottom: 0.8rem;
+    direction: rtl;
+  }
+  @media(max-width: 920px) {
+    .fiq-grid {
+      grid-template-columns: 1fr;
+    }
+    .fiq-sidebar {
+      position: static;
+    }
+  }
+  @media(max-width: 640px) {
+    .fiq-banner {
+      height: 180px;
+      margin-bottom: 1.8rem;
+    }
+  }
+</style>
+</head>
+<body class="lang-sw">
+
+<!-- ━━ LANG STRIP ━━ -->
+<div class="ls">
+  <span class="ls-brand">Sabeel</span>
+  <div class="ls-btns">
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb on" onclick="setLang('sw')">SW</button>
+    <button class="lb" onclick="setLang('ar')">عربي</button>
+  </div>
+</div>
+
+<!-- ━━ NAV ━━ -->
+<nav id="mnav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C9.24 2 7 4.24 7 7c0 3.53 4.25 8.42 4.6 8.83.21.24.59.24.8 0C12.75 15.42 17 10.53 17 7c0-2.76-2.24-5-5-5z" stroke="white" stroke-width="1.4"/><circle cx="12" cy="7" r="2" stroke="white" stroke-width="1.2"/><path d="M5 20c0-2.21 3.13-4 7-4s7 1.79 7 4" stroke="rgba(255,255,255,.45)" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <span class="nav-wm">SABEEL</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#donations"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a></li>
+    <li><a href="index.html#campaign"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a></li>
+    <li><a href="index.html#calculator"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a></li>
+    <li><a href="#" class="n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a></li>
+  </ul>
+  <button id="ham-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- ━━ MOBILE MENU ━━ -->
+<div id="ham-menu">
+  <a href="index.html#donations" class="ham-link"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a>
+  <a href="index.html#campaign" class="ham-link"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a>
+  <a href="index.html#calculator" class="ham-link"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a>
+  <a href="#" class="ham-link n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a>
+</div>
+
+<!-- ━━━━━━ CONTENT SECTION ━━━━━━ -->
+<section class="don-sec" style="padding: 8rem 0 4rem;">
+  <div class="ct">
+
+    <!-- Title Page Header -->
+    <div class="s-head fiu" style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="eyebrow"><span data-sw>Nguzo ya Uislamu</span><span data-en>Pillar of Islam</span><span data-ar>ركن الإسلام</span></span>
+      <h1 class="s-h">
+        <span data-sw>Zakat ni <span class="ac">Nini?</span></span>
+        <span data-en>What is <span class="ac">Zakat?</span></span>
+        <span data-ar>ما هي <span class="ac">الزكاة؟</span></span>
+      </h1>
+      <div class="sec-div" style="margin: 0.9rem auto 1.4rem;"></div>
+    </div>
+
+    <!-- Banner Image Area -->
+    <div class="fiq-banner fiu">
+      <img src="images/zakat.png" alt="Zakat" onerror="this.onerror=null; this.src='images/zakat.jpg';">
+    </div>
+
+    <div class="fiq-grid">
+      
+      <!-- MAIN TEXT -->
+      <div>
+        <div class="fiq-card fiu">
+          <span class="eyebrow"><span data-sw>Msingi wa Qur'ani</span><span data-en>Quranic Basis</span><span data-ar>الأساس القرآني</span></span>
+          <h2 class="s-h"><span data-sw>Wajibu wa Zakat</span><span data-en>The Obligation of Zakat</span><span data-ar>فريضة الزكاة</span></h2>
+          <div class="sec-div"></div>
+
+          <div class="verse-box">
+            <p class="verse-ar">خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيهِمْ بِهَا</p>
+            <p class="fiq-p" style="font-style: italic; font-size: 0.9rem; text-align: center; margin-bottom: 0;">
+              <span data-sw>"Chukua sadaka katika mali zao, uwasafishe na uwatakase kwazo..." — At-Tawbah: 103</span>
+              <span data-en>"Take, [O Muhammad], from their wealth a charity by which you purify them and cause them increase..." — At-Tawbah: 103</span>
+              <span data-ar>"خذ من أموالهم صدقة تطهرهم وتزكيهم بها..." — التوبة: ١٠٣</span>
+            </p>
+          </div>
+
+          <p class="fiq-p">
+            <span data-sw>Zakat ni nguzo ya tatu ya Uislamu na ni haki ya lazima iliyowekwa na Mwenyezi Mungu katika mali za matajiri ili kugawiwa kwa wenye uhitaji. Neno Zakat lenyewe maana yake ni "Kusafisha" na "Kukuza" — kuonyesha kuwa utoaji huu hausababishi upungufu wa mali, bali husafisha roho ya mtoaji na kuleta baraka kwenye mali iliyobaki.</span>
+            <span data-en>Zakat is the third pillar of Islam, representing a mandatory charitable contribution ordained by Allah on those who meet the wealth criteria, to be distributed to specific beneficiaries. The word Zakat means "Purification" and "Growth" — highlighting that this duty purifies the soul of selfishness and blesses the remaining wealth.</span>
+            <span data-ar>الزكاة هي الركن الثالث من أركان الإسلام، وهي حق مالي أوجبه الله تعالى في أموال الأغنياء يُردّ على الفقراء والمستحقين. والزكاة في اللغة تعني "النماء" و"الطهارة" — مما يشير إلى أنها تطهر نفس المزكي وتنمي ماله وتبارك فيه.</span>
+          </p>
+        </div>
+
+        <div class="fiq-card fiu">
+          <span class="eyebrow"><span data-sw>Walengwa 8</span><span data-en>8 Recipients</span><span data-ar>الأصناف الثمانية</span></span>
+          <h2 class="s-h"><span data-sw>Nani Anapaswa Kupokea Zakat?</span><span data-en>Who is Eligible for Zakat?</span><span data-ar>من هم مستحقو الزكاة؟</span></h2>
+          <div class="sec-div"></div>
+          <p class="fiq-p">
+            <span data-sw>Kulingana na aya ya 60 ya Surah At-Tawbah, kuna makundi manane maalum yanayoruhusiwa kupokea msaada wa Zakat:</span>
+            <span data-en>According to verse 60 of Surah At-Tawbah, there are eight specific categories of individuals eligible to receive Zakat:</span>
+            <span data-ar>حدّد القرآن الكريم في الآية ٦٠ من سورة التوبة ثمانية أصناف تُصرف لهم أموال الزكاة:</span>
+          </p>
+
+          <div class="asnaf-grid">
+            <div class="asnaf-box">
+              <div class="asnaf-num">01</div>
+              <div class="asnaf-title"><span data-sw>Mafukara</span><span data-en>The Poor (Al-Fuqara)</span><span data-ar>الفقراء</span></div>
+            </div>
+            <div class="asnaf-box">
+              <div class="asnaf-num">02</div>
+              <div class="asnaf-title"><span data-sw>Masikini</span><span data-en>The Needy (Al-Masakin)</span><span data-ar>المساكين</span></div>
+            </div>
+            <div class="asnaf-box">
+              <div class="asnaf-num">03</div>
+              <div class="asnaf-title"><span data-sw>Wasimamizi</span><span data-en>Collectors (Al-Amilina)</span><span data-ar>العاملون عليها</span></div>
+            </div>
+            <div class="asnaf-box">
+              <div class="asnaf-num">04</div>
+              <div class="asnaf-title"><span data-sw>Kusogeza Nyoyo</span><span data-en>Reconciled (Al-Mu'allafah)</span><span data-ar>المؤلفة قلوبهم</span></div>
+            </div>
+            <div class="asnaf-box">
+              <div class="asnaf-num">05</div>
+              <div class="asnaf-title"><span data-sw>Kukomboa Watumwa</span><span data-en>Freeing Captives (Fi Riqab)</span><span data-ar>في الرقاب</span></div>
+            </div>
+            <div class="asnaf-box">
+              <div class="asnaf-num">06</div>
+              <div class="asnaf-title"><span data-sw>Wenye Madeni</span><span data-en>Debtors (Al-Gharimin)</span><span data-ar>الغارمون</span></div>
+            </div>
+            <div class="asnaf-box">
+              <div class="asnaf-num">07</div>
+              <div class="asnaf-title"><span data-sw>Njia ya Allah</span><span data-en>Cause of Allah (Fi Sabilillah)</span><span data-ar>في سبيل الله</span></div>
+            </div>
+            <div class="asnaf-box">
+              <div class="asnaf-num">08</div>
+              <div class="asnaf-title"><span data-sw>Wasafiri Walioharibikiwa</span><span data-en>Wayfarers (Ibn Al-Sabil)</span><span data-ar>ابن السبيل</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fiq-card fiu">
+          <span class="eyebrow"><span data-sw>Aina za Zakat</span><span data-en>Types of Zakat</span><span data-ar>أنواع الزكاة</span></span>
+          <h2 class="s-h"><span data-sw>Zakat al-Mal vs Zakat al-Fitrah</span><span data-en>Zakat al-Mal vs Zakat al-Fitrah</span><span data-ar>زكاة المال وزكاة الفطرة</span></h2>
+          <div class="sec-div"></div>
+          <p class="fiq-p">
+            <span data-sw>Kuna aina mbili kuu za Zakat ambazo kila Muislamu anapaswa kuzifahamu vizuri:</span>
+            <span data-en>There are two distinct types of Zakat that every Muslim should understand clearly:</span>
+            <span data-ar>تنقسم الزكاة في الشريعة الإسلامية إلى نوعين رئيسيين:</span>
+          </p>
+
+          <h3 class="fiq-h3"><span data-sw>1. Zakat al-Mal (Zakat ya Mali)</span><span data-en>1. Zakat al-Mal (Wealth Zakat)</span><span data-ar>١. زكاة المال</span></h3>
+          <p class="fiq-p">
+            <span data-sw>Hii ni Zakat inayotolewa kwenye mali, biashara, mazao, mifugo, au fedha zilizofikia kiwango maalum cha kisheria (Nisab) na kudumu nazo kwa mwaka mzima (Hawl). Kiwango chake cha kawaida ni asilimia 2.5% ya jumla ya thamani ya mali hiyo.</span>
+            <span data-en>This is Zakat payable on accumulated wealth, crops, livestock, or gold/silver currencies that meet the minimum threshold (Nisab) and remain in one's possession for a full lunar year (Hawl). The standard rate is generally 2.5% of the total eligible wealth.</span>
+            <span data-ar>وهي الزكاة التي تجب في أصناف معينة من المال (كالأنعام الثلاثة، والنقدين، والغلات الأربع) إذا بلغت نصاباً معيناً وحال عليها الحول (مرور عام كامل). ونسبتها المعتادة هي ٢.٥٪.</span>
+          </p>
+
+          <h3 class="fiq-h3"><span data-sw>2. Zakat al-Fitrah (Zakat ya Fitri)</span><span data-en>2. Zakat al-Fitrah (End of Ramadan Zakat)</span><span data-ar>٢. زكاة الفطرة</span></h3>
+          <p class="fiq-p">
+            <span data-sw>Hii ni Zakat ya lazima inayotolewa mwishoni mwa mwezi mtukufu wa Ramadhan kabla ya sala ya Eid al-Fitr. Inatolewa kwa kila kichwa cha mtu kwenye familia na kiasi chake kinalingana na kilo tatu za chakula kikuu cha eneo husika (kama mchele, ngano, n.k.) au thamani yake kwa pesa taslimu.</span>
+            <span data-en>This is the mandatory charity given at the end of the holy month of Ramadan, before the Eid al-Fitr prayer. It is obligatory on the head of the household for every dependent, equivalent to approximately 3kg of local staple food (such as rice or wheat) or its monetary value.</span>
+            <span data-ar>وهي زكاة الأبدان التي تجب بغروب شمس آخر يوم من شهر رمضان على كل مكلف عن نفسه وعن كل من يعولهم، ومقدارها صاع (ما يقارب ٣ كيلوغرامات) من القوت الغالب للبلد (كالأرز أو القمح) أو قيمته نقداً.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- SIDEBAR CALCULATOR -->
+      <div class="fiq-sidebar fiu">
+        <div class="kh-card" style="background: rgba(8,26,18,0.95); border: 1px solid rgba(62,203,112,.22);">
+          <span class="kh-lbl" style="color: var(--g400);"><span data-sw>Hesabu Zakat ya Mali</span><span data-en>Calculate Wealth Zakat</span><span data-ar>احسب زكاة المال</span></span>
+          <h3 class="s-h" style="color:var(--white); font-size: 1.35rem; margin-bottom: 1rem;"><span data-sw>Chagua Kiasi</span><span data-en>Assess Wealth</span><span data-ar>احسب الزكاة</span></h3>
+          
+          <span class="kh-lbl"><span data-sw>Jumla ya Mali Yako (TZS)</span><span data-en>Total Eligible Wealth (TZS)</span><span data-ar>إجمالي الثروة (شلن)</span></span>
+          <input type="number" class="kh-in" id="zakat-wealth" placeholder="0" oninput="calcZakat()">
+          
+          <div class="kh-res" style="background: rgba(62,203,112,0.15); border-color: rgba(62,203,112,0.3);">
+            <span class="kh-rl"><span data-sw>Zakat Inayostahili</span><span data-en>Zakat Due (2.5%)</span><span data-ar>الزكاة المستحقة ٢.٥٪</span></span>
+            <span class="kh-rv" id="zakat-result" style="color: var(--g400);">TZS 0</span>
+          </div>
+
+          <div class="kh-note" style="color: rgba(255,255,255,0.45); font-size: 0.75rem;"><span data-sw>Nisab inategemea bei ya dhahabu au fedha katika eneo lako. Tafadhali thibitisha na ofisi ya Marja' wako.</span><span data-en>Nisab threshold varies based on silver or gold values. Please verify details with your local authority.</span><span data-ar>يختلف نصاب زكاة المال بحسب أسعار الذهب والفضة حالياً. يرجى الرجوع لمرجعك الفقهي.</span></div>
+          
+          <button class="btn btn-g btn-full" onclick="openModal('modal-zakat')">
+            <span data-sw>Toa Zakat Sasa</span>
+            <span data-en>Pay Zakat Now</span>
+            <span data-ar>أدِّ الزكاة الآن</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ZAKAT MODAL -->
+<div class="ov" id="modal-zakat" onclick="closeBg(event,'modal-zakat')">
+  <div class="modal">
+    <div class="m-bar cb-zk"></div>
+    <div class="m-in">
+      <button class="m-x" onclick="closeModal('modal-zakat')">✕</button>
+      <span class="m-ey"><span data-sw>Nguzo ya Uislamu</span><span data-en>Pillar of Islam</span><span data-ar>ركن من أركان الإسلام</span></span>
+      <h3 class="m-ttl">Zakat</h3>
+      <span class="m-arl">الزكاة — تزكية المال</span>
+      <p class="m-desc"><span data-sw>Zakat ni 2.5% ya mali iliyozidi kizingiti cha Nisab na kudumu kwa mwaka mzima (Hawl).</span><span data-en>Zakat is 2.5% of wealth exceeding the Nisab threshold for a full lunar year (Hawl).</span><span data-ar>الزكاة هي ٢.٥٪ من المال الذي تجاوز النصاب وحال عليه الحول.</span></p>
+      <div class="pay-step-header">
+        <span class="pay-step-status"></span>
+        <div class="pay-stepper">
+          <span class="pay-step active"><span class="p-dot"></span><span data-sw>Hatua 1</span><span data-en>Step 1</span><span data-ar>الخطوة 1</span></span>
+          <span class="pay-step"><span class="p-dot"></span><span data-sw>Hatua 2</span><span data-en>Step 2</span><span data-ar>الخطوة 2</span></span>
+        </div>
+      </div>
+      <div class="pay-step-panel active" data-step="1">
+        <span class="m-lbl"><span data-sw>Kiasi cha kutoa (TZS)</span><span data-en>Amount to Pay (TZS)</span><span data-ar>المبلغ المراد دفعه (شلن)</span></span>
+        <input type="number" class="m-inp" id="modal-zakat-amt" placeholder="0">
+        <span class="m-lbl"><span data-sw>Taasisi</span><span data-en>Institution</span><span data-ar>المؤسسة</span></span>
+        <select class="m-sel">
+          <option>Imam Ali Mosque — Dar es Salaam</option>
+          <option>Al-Abbas Islamic Centre</option>
+          <option>Al-Zahra Foundation</option>
+        </select>
+        <span class="m-lbl"><span data-sw>Njia ya Malipo</span><span data-en>Payment Method</span><span data-ar>طريقة الدفع</span></span>
+        <div class="pay-m">
+          <button class="pay-b on"><span class="pay-d" style="background:#00A651;"></span>M-Pesa</button>
+          <button class="pay-b"><span class="pay-d" style="background:#0099CC;"></span>Tigo Pesa</button>
+          <button class="pay-b"><span class="pay-d" style="background:#E4002B;"></span>Airtel Money</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-g btn-full" onclick="nextPaymentStep('modal-zakat')"><span data-sw>Endelea</span><span data-en>Continue</span><span data-ar>متابعة</span></button>
+        </div>
+      </div>
+      <div class="pay-step-panel" data-step="2">
+        <span class="m-lbl"><span data-sw>Namba ya Simu</span><span data-en>Phone Number</span><span data-ar>رقم الهاتف</span></span>
+        <input type="tel" class="m-inp" name="phone" placeholder="+255 7XX XXX XXX">
+        <span class="m-lbl"><span data-sw>Anwani ya Barua Pepe</span><span data-en>Email Address</span><span data-ar>البريد الإلكتروني</span></span>
+        <input type="email" class="m-inp" name="email" placeholder="you@example.com">
+        <span class="m-lbl"><span data-sw>Promo Code</span><span data-en>Promo Code</span><span data-ar>رمز الخصم</span></span>
+        <input type="text" class="m-inp" name="promo_code" placeholder="PROMO2026">
+        <div class="btn-group">
+          <button class="btn btn-g btn-full" onclick="sendPromoCode('modal-zakat')"><span data-sw>Tuma Promo</span><span data-en>Send Promo Code</span><span data-ar>إرسال رمز الخصم</span></button>
+          <button class="btn btn-dark btn-full" onclick="confirmPayment('modal-zakat')"><span data-sw>Lipa Sasa</span><span data-en>Pay Now</span><span data-ar>ادفع الآن</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

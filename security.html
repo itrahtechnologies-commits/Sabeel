@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="sw" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabeel — Sera ya Usalama</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .fiq-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid rgba(62,203,112,.12);
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(7,26,14,.02);
+    margin-bottom: 2rem;
+  }
+  .fiq-h3 {
+    font-family: var(--fs);
+    font-size: 1.3rem;
+    color: var(--g800);
+    margin: 1.8rem 0 0.8rem;
+  }
+  .fiq-p {
+    font-size: 0.98rem;
+    color: var(--g600t);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+</style>
+</head>
+<body class="lang-sw">
+
+<!-- ━━ LANG STRIP ━━ -->
+<div class="ls">
+  <span class="ls-brand">Sabeel</span>
+  <div class="ls-btns">
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb on" onclick="setLang('sw')">SW</button>
+    <button class="lb" onclick="setLang('ar')">عربي</button>
+  </div>
+</div>
+
+<!-- ━━ NAV ━━ -->
+<nav id="mnav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C9.24 2 7 4.24 7 7c0 3.53 4.25 8.42 4.6 8.83.21.24.59.24.8 0C12.75 15.42 17 10.53 17 7c0-2.76-2.24-5-5-5z" stroke="white" stroke-width="1.4"/><circle cx="12" cy="7" r="2" stroke="white" stroke-width="1.2"/><path d="M5 20c0-2.21 3.13-4 7-4s7 1.79 7 4" stroke="rgba(255,255,255,.45)" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <span class="nav-wm">SABEEL</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#donations"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a></li>
+    <li><a href="index.html#campaign"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a></li>
+    <li><a href="index.html#calculator"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a></li>
+    <li><a href="#" class="n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a></li>
+  </ul>
+  <button id="ham-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- ━━ MOBILE MENU ━━ -->
+<div id="ham-menu">
+  <a href="index.html#donations" class="ham-link"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a>
+  <a href="index.html#campaign" class="ham-link"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a>
+  <a href="index.html#calculator" class="ham-link"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a>
+  <a href="#" class="ham-link n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a>
+</div>
+
+<!-- ━━━━━━ CONTENT ━━━━━━ -->
+<section class="don-sec" style="padding: 8rem 0 4rem;">
+  <div class="ct" style="max-width: 900px;">
+    
+    <!-- Title Page Header -->
+    <div class="s-head fiu" style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="eyebrow"><span data-sw>Imani na Ulinzi</span><span data-en>Trust & Security</span><span data-ar>الأمان والموثوقية</span></span>
+      <h1 class="s-head s-h">
+        <span data-sw>Ulinzi wa <span class="gw">Mifumo</span></span>
+        <span data-en>System <span class="gw">Security</span></span>
+        <span data-ar>أمن <span class="gw">المعلومات</span></span>
+      </h1>
+      <div class="sec-div" style="margin: 0.9rem auto 1.4rem;"></div>
+    </div>
+
+    <div class="fiq-card fiu">
+      <span class="eyebrow"><span data-sw>Usalama wa Miamala</span><span data-en>Transactional Security</span><span data-ar>أمن المعاملات</span></span>
+      <h2 class="s-h"><span data-sw>1. Usimbaji wa SSL na Data</span><span data-en>1. SSL Encryption & Protection</span><span data-ar>١. تشفير البيانات وحمايتها</span></h2>
+      <div class="sec-div"></div>
+      <p class="fiq-p">
+        <span data-sw>Mawasiliano yote kati ya kivinjari chako na seva za Sabeel yamelindwa kwa kutumia teknolojia ya usimbaji wa kiwango cha juu (Secure Socket Layer - SSL). Hii inamaanisha kuwa hakuna mtu mwingine wa nje anayeweza kusoma, kuiba, au kubadilisha taarifa zako unapofanya utoaji wa Khums au Zakat kupitia tovuti yetu.</span>
+        <span data-en>All communication between your browser and Sabeel's servers is secured using advanced Secure Socket Layer (SSL) encryption technology. This ensures that no unauthorized third parties can intercept, view, or alter your data when making contributions.</span>
+        <span data-ar>إن جميع الاتصالات بين متصفحك وخوادم منصة سبيل محمية بالكامل باستخدام تقنيات التشفير المتقدمة (SSL). يضمن ذلك عدم قدرة أي طرف ثالث غير مصرح له على اعتراض بياناتك أو الاطلاع عليها أثناء أداء حقوقك الشرعية.</span>
+      </p>
+
+      <h3 class="fiq-h3"><span data-sw>2. Ushirikiano na Mitandao ya Simu</span><span data-en>2. Integration with Mobile Providers</span><span data-ar>٢. الربط مع شبكات الاتصال</span></h3>
+      <p class="fiq-p">
+        <span data-sw>Miamala yote ya kifedha inayofanywa kupitia simu za mkononi (M-Pesa, Tigo Pesa, Airtel Money) na kadi za Benki inasindikwa kwa kutumia mifumo iliyoidhinishwa na Benki Kuu ya Tanzania. Sabeel haihifadhi namba yako ya siri (PIN) ya huduma hizi, na malipo yote yanatendeka kwa uwazi chini ya idhini yako ya moja kwa moja kwenye simu yako.</span>
+        <span data-en>All financial transactions initiated via mobile money (M-Pesa, Tigo Pesa, Airtel Money) or credit cards are safely processed through financial gateways authorized by the Bank of Tanzania. Sabeel never captures or stores your payment PINs or private bank credentials.</span>
+        <span data-ar>تتم معالجة جميع المعاملات المالية عبر شبكات الهاتف (M-Pesa, Tigo Pesa, Airtel Money) أو البطاقات البنكية من خلال بوابات دفع معتمدة رسمياً. منصة سبيل لا تحتفظ إطلاقاً بالرموز السرية (PIN) أو البيانات البنكية الخاصة بك.</span>
+      </p>
+
+      <h3 class="fiq-h3"><span data-sw>3. Uhakiki wa Ijazah na Dhamana ya Kidini</span><span data-en>3. Verification of Religious Approvals (Ijazah)</span><span data-ar>٣. التدقيق الشرعي والاعتمادات</span></h3>
+      <p class="fiq-p">
+        <span data-sw>Usalama wetu hauishii kwenye teknolojia pekee, bali unaenda hadi kwenye usalama wa kidini na kisheria. Sisi kama jukwaa tunafanya uhakiki wa kina wa nyaraka za ki-Fiqh na kuhakikisha kuwa kila taasisi inayopokea Khums au Zakat kupitia mfumo wetu ina *Ijazah* (idhini rasmi ya maandishi) ya sasa kutoka kwa Marja' al-Taqlid anayehusika ili kuhakikisha utoaji wako ni halali mbele ya Mwenyezi Mungu.</span>
+        <span data-en>Our security standards extend beyond technology to encompass spiritual and canonical compliance. Sabeel performs thorough vetting of all registered institutions, validating that every entity collecting Khums or Zakat holds active, authentic written authorization (*Ijazah*) from the respective Marja' al-Taqlid.</span>
+        <span data-ar>لا تقتصر معايير الأمان لدينا على الجانب التقني فحسب، بل تمتد لتشمل الجانب الشرعي أيضاً. تقوم منصة سبيل بالتدقيق والتحقق من التراخيص الشرعية، لضمان أن كل مؤسسة تستقبل أموال الخمس والزكاة تمتلك إجازة شرعية سارية المفعول من المرجع الديني المختص.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="sw" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabeel — Njia za Utoaji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --hero-green: #27a050;
+    --hero-green-dark: #1e7a3b;
+    --card-border: 1px solid rgba(30,122,59,0.10);
+    --card-shadow: 0 2px 16px rgba(7,26,14,0.06);
+    --card-hover-shadow: 0 12px 40px rgba(7,26,14,0.13);
+    --transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  /* ── HERO ── */
+  .hero-gradient {
+    background: linear-gradient(160deg,#ffffff 0%,#f0faf4 25%,#d6f0e0 55%,#b4e2c6 75%,#7ec99a 100%);
+    min-height: 340px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 8rem 1.5rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-gradient::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(39,160,80,0.18) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-gradient::after {
+    content:''; position:absolute; top:-80px; right:-80px;
+    width:420px; height:420px; border-radius:50%;
+    background: radial-gradient(circle, rgba(39,160,80,0.08) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner { text-align:center; max-width:680px; position:relative; z-index:2; }
+  .hero-eyebrow {
+    display:inline-block;
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:0.75rem; font-weight:600;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--hero-green-dark);
+    background:rgba(30,122,59,0.10); border:1px solid rgba(30,122,59,0.18);
+    padding:0.35rem 1rem; border-radius:100px; margin-bottom:1.4rem;
+  }
+  .hero-title {
+    font-family:'Lora',serif; font-size:clamp(2rem,5vw,3rem);
+    font-weight:600; line-height:1.2; color:#0f3d1e; margin:0 0 1rem;
+  }
+  .hero-title .ac { color:var(--hero-green); font-style:italic; font-weight:500; }
+  .hero-divider {
+    width:48px; height:3px;
+    background:linear-gradient(90deg,var(--hero-green) 0%,transparent 100%);
+    border-radius:99px; margin:0 auto 1.2rem;
+  }
+  .hero-sub {
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:1rem;
+    line-height:1.8; color:#2d5c3a; max-width:520px; margin:0 auto;
+  }
+
+  /* ── SECTION ── */
+  .giving-section { padding:4rem 1.5rem 6rem; background:#f7fdf9; }
+  .giving-ct { max-width:1160px; margin:0 auto; }
+
+  /* ── CARD GRID — equal height rows ── */
+  .giving-grid {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1.75rem;
+    /* all cards in same row share height */
+    align-items:stretch;
+  }
+  @media (max-width:900px) { .giving-grid { grid-template-columns:1fr; } }
+
+  /* ── CARD ── */
+  .g-card {
+    background:#ffffff;
+    border:var(--card-border);
+    box-shadow:var(--card-shadow);
+    display:flex; flex-direction:row;
+    overflow:hidden;
+    transition:var(--transition);
+    position:relative;
+    /* stretch to fill row height — no min-height needed */
+  }
+  .g-card:hover {
+    transform:translateY(-4px) scale(1.005);
+    box-shadow:var(--card-hover-shadow);
+    border-color:rgba(30,122,59,0.22);
+  }
+
+  /* ── SIDE ACCENT ── */
+  .g-card-side {
+    width:96px; flex-shrink:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:2rem 0; gap:0.9rem;
+  }
+  .side-green { background:linear-gradient(180deg,#e8f7ee 0%,#c5ebce 100%); }
+  .side-gold  { background:linear-gradient(180deg,#fdf6e3 0%,#f0dea8 100%); }
+  .side-teal  { background:linear-gradient(180deg,#e2f5f0 0%,#b5dfd5 100%); }
+
+  .g-card-icon {
+    width:52px; height:52px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.82);
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  }
+  .g-card-arabic {
+    font-family:'Tajawal','Arabic Typesetting',serif;
+    font-size:1rem; font-weight:700;
+    color:rgba(0,0,0,0.28); text-align:center; line-height:1.3;
+  }
+
+  /* ── CARD BODY ── */
+  .g-card-body {
+    flex:1; padding:1.8rem 1.9rem;
+    display:flex; flex-direction:column; justify-content:space-between; gap:0.8rem;
+  }
+  .g-card-top { display:flex; flex-direction:column; gap:0.5rem; }
+  .g-card-title {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:1.25rem; font-weight:700; color:#0f3d1e; margin:0;
+  }
+  .g-card-desc {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:0.9rem; line-height:1.8; color:#456050; margin:0;
+  }
+  .g-card-foot {
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:1rem; border-top:1px dashed rgba(30,122,59,0.14); gap:0.8rem;
+    margin-top:auto;
+  }
+  .g-card-tag {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:0.74rem; font-weight:600; color:var(--hero-green-dark);
+    background:rgba(30,122,59,0.08); border:1px solid rgba(30,122,59,0.15);
+    padding:0.28rem 0.8rem; border-radius:100px; white-space:nowrap;
+  }
+  .g-card-tag.tag-gold {
+    color:#8a6500; background:rgba(201,168,76,0.10); border-color:rgba(201,168,76,0.22);
+  }
+
+  /* ── BUTTONS ── */
+  .btn-give {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:0.82rem; font-weight:700;
+    padding:0.5rem 1.25rem; border-radius:100px; border:none;
+    cursor:pointer; transition:var(--transition); white-space:nowrap;
+  }
+  .btn-give-green {
+    background:linear-gradient(135deg,#27a050 0%,#1e7a3b 100%);
+    color:#fff; box-shadow:0 2px 10px rgba(30,122,59,0.28);
+  }
+  .btn-give-green:hover {
+    background:linear-gradient(135deg,#32bb60 0%,#27a050 100%);
+    box-shadow:0 4px 16px rgba(30,122,59,0.40); transform:translateY(-1px);
+  }
+  .btn-give-gold {
+    background:linear-gradient(135deg,#e2b84a 0%,#c49a28 100%);
+    color:#4a2e00; box-shadow:0 2px 10px rgba(201,168,76,0.28);
+  }
+  .btn-give-gold:hover {
+    background:linear-gradient(135deg,#ecc655 0%,#d4a830 100%);
+    box-shadow:0 4px 16px rgba(201,168,76,0.42); transform:translateY(-1px);
+  }
+
+  /* ── POPULAR BADGE ── */
+  .g-popular-badge {
+    position:absolute; top:13px; right:13px;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:0.66rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    background:linear-gradient(135deg,#27a050,#1e7a3b); color:#fff;
+    padding:0.18rem 0.6rem; border-radius:100px;
+    box-shadow:0 2px 8px rgba(30,122,59,0.28);
+  }
+
+  /* ── HIGHLIGHTED (Maasumina) ── */
+  .g-card.card-highlight {
+    border:1.5px solid rgba(201,168,76,0.32);
+    background:linear-gradient(135deg,#fffdf5 0%,#fff8e0 100%);
+  }
+  .g-card.card-full { grid-column:1/-1; }
+
+  /* ── ZAKAT TYPE BUTTONS (on card) ── */
+  .zakat-type-row { display:flex; gap:0.45rem; flex-wrap:wrap; margin-bottom:0.4rem; }
+  .zakat-type-btn {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:0.76rem; font-weight:600;
+    padding:0.28rem 0.85rem; border-radius:100px;
+    border:1.5px solid rgba(30,122,59,0.20);
+    background:transparent; color:#456050; cursor:pointer;
+    transition:var(--transition);
+  }
+  .zakat-type-btn.active {
+    background:linear-gradient(135deg,#27a050 0%,#1e7a3b 100%);
+    color:#fff; border-color:transparent;
+  }
+
+  /* ── MOBILE (≤520px): stack card vertically, modals stay single-col ── */
+  @media (max-width:520px) {
+    .g-card { flex-direction:column; }
+    .g-card-side {
+      width:100%; height:70px; flex-direction:row;
+      justify-content:flex-start; padding:0 1.2rem; gap:1rem;
+    }
+    .g-card-foot { flex-wrap:wrap; }
+  }
+
+  /* ════════════════════════════════════════
+     MODAL — desktop: horizontal card layout
+     mobile: single column (default style.css)
+  ════════════════════════════════════════ */
+
+  /* Base modal stays as style.css provides on mobile */
+
+  @media (min-width:640px) {
+    /* Wider modal on desktop */
+    .modal {
+      max-width: 740px !important;
+      width: 92vw !important;
+    }
+
+    /* Inner becomes a two-column flex */
+    .m-in {
+      display: flex !important;
+      flex-direction: row !important;
+      padding: 0 !important;
+      gap: 0 !important;
+    }
+
+    /* Left accent panel */
+    .m-side {
+      width: 110px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 2rem 0;
+      border-right: 1px solid rgba(30,122,59,0.10);
+    }
+    .m-side-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.82);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .m-side-arabic {
+      font-family: 'Tajawal',serif; font-size: 1rem; font-weight: 700;
+      color: rgba(0,0,0,0.28); text-align: center;
+    }
+
+    /* Right content column */
+    .m-content {
+      flex: 1;
+      padding: 1.6rem 1.8rem 1.8rem;
+      display: flex; flex-direction: column; gap: 0;
+      overflow-y: auto;
+      max-height: 85vh;
+    }
+
+    /* Hide the side on mobile — handled below */
+    .m-side { display: flex; }
+  }
+
+  /* Mobile: hide side panel, show content normally */
+  @media (max-width:639px) {
+    .m-side { display: none !important; }
+    .m-content { padding: 1.5rem 1.4rem 1.8rem; }
+    .modal { max-width: 96vw !important; }
+  }
+
+  /* Zakat toggle inside modal */
+  .zakat-modal-toggle { display:flex; gap:0.45rem; margin-bottom:0.9rem; }
+  .zakat-modal-toggle button {
+    flex:1;
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8rem; font-weight:600;
+    padding:0.52rem 0.5rem; border-radius:8px;
+    border:1.5px solid rgba(30,122,59,0.22);
+    background:transparent; color:#456050; cursor:pointer;
+    transition:var(--transition); text-align:center; line-height:1.3;
+  }
+  .zakat-modal-toggle button.active {
+    background:linear-gradient(135deg,#27a050 0%,#1e7a3b 100%);
+    color:#fff; border-color:transparent;
+  }
+  .zakat-panel { display:none; }
+  .zakat-panel.active { display:block; }
+
+  /* Slim up modal elements slightly */
+  .m-x { top:0.9rem !important; right:0.9rem !important; }
+</style>
+</head>
+<body class="lang-sw">
+
+<!-- ━━ LANG STRIP ━━ -->
+<div class="ls">
+  <span class="ls-brand">Sabeel</span>
+  <div class="ls-btns">
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb on" onclick="setLang('sw')">SW</button>
+    <button class="lb" onclick="setLang('ar')">عربي</button>
+  </div>
+</div>
+
+<!-- ━━ NAV ━━ -->
+<nav id="mnav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C9.24 2 7 4.24 7 7c0 3.53 4.25 8.42 4.6 8.83.21.24.59.24.8 0C12.75 15.42 17 10.53 17 7c0-2.76-2.24-5-5-5z" stroke="white" stroke-width="1.4"/><circle cx="12" cy="7" r="2" stroke="white" stroke-width="1.2"/><path d="M5 20c0-2.21 3.13-4 7-4s7 1.79 7 4" stroke="rgba(255,255,255,.45)" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <span class="nav-wm">SABEEL</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#donations"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a></li>
+    <li><a href="index.html#campaign"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a></li>
+    <li><a href="index.html#calculator"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a></li>
+    <li><a href="#" class="n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a></li>
+  </ul>
+  <button id="ham-btn"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="ham-menu">
+  <a href="index.html#donations" class="ham-link"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a>
+  <a href="index.html#campaign" class="ham-link"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a>
+  <a href="index.html#calculator" class="ham-link"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a>
+  <a href="#" class="ham-link n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a>
+</div>
+
+<!-- ━━━━━━ HERO ━━━━━━ -->
+<div class="hero-gradient">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">
+      <span data-sw>Aina za Utoaji</span>
+      <span data-en>Types of Giving</span>
+      <span data-ar>أنواع العطاء</span>
+    </span>
+    <h1 class="hero-title">
+      <span data-sw>Chagua <span class="ac">Njia ya Kutoa</span></span>
+      <span data-en>Choose Your <span class="ac">Path of Giving</span></span>
+      <span data-ar>اختر <span class="ac">طريق العطاء</span></span>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">
+      <span data-sw>Kila aina ya utoaji ina hadhi yake mbele ya Mwenyezi Mungu. Toa kwa urahisi, usalama, na uwazi kamili.</span>
+      <span data-en>Every form of giving holds its own honour before Allah. Give with ease, security, and full transparency.</span>
+      <span data-ar>كل نوع من أنواع العطاء له مكانته عند الله. أعطِ بسهولة وأمان وشفافية كاملة.</span>
+    </p>
+  </div>
+</div>
+
+<!-- ━━━━━━ CARDS ━━━━━━ -->
+<section class="giving-section">
+  <div class="giving-ct">
+    <div class="giving-grid">
+
+      <!-- KHUMS -->
+      <div class="g-card">
+        <div class="g-card-side side-green">
+          <div class="g-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M3 21h18M5 21V10l7-7 7 7v11M10 21v-4h4v4" stroke="#1e7a3b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 10.5C9 9.12 10.34 8 12 8s3 1.12 3 2.5" stroke="#27a050" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="g-card-arabic">الخُمس</span>
+        </div>
+        <div class="g-card-body">
+          <div class="g-card-top">
+            <h3 class="g-card-title">Khums</h3>
+            <p class="g-card-desc">
+              <span data-sw>Khums ni tano ya mali ya ziada inayobaki baada ya mahitaji ya mwaka — wajibu wa kidini kwa mujibu wa Fiqh ya Kishia. Sabeel inashirikiana moja kwa moja na taasisi zilizoidhinishwa na Marja' ili malipo yako yafike salama, kwa uwazi kamili, na kwa heshima inayostahili amana hii ya dini.</span>
+              <span data-en>Khums is one-fifth of the annual surplus remaining after all needs are met — a religious obligation in Shia Fiqh. Sabeel partners directly with Marja'-approved institutions so your payment reaches safely, transparently, and with the dignity this sacred duty deserves.</span>
+              <span data-ar>الخُمس هو خُمس الفائض السنوي بعد تغطية جميع الاحتياجات — واجب ديني في الفقه الشيعي. يشترك سبيل مباشرةً مع مؤسسات معتمدة من المرجعية لتصل أموالك بأمان وشفافية كاملة.</span>
+            </p>
+          </div>
+          <div class="g-card-foot">
+            <span class="g-card-tag"><span data-sw>20% ya ziada</span><span data-en>20% of surplus</span><span data-ar>٢٠٪ من الفائض</span></span>
+            <button class="btn-give btn-give-green" onclick="openModal('modal-khums')">
+              <span data-sw>Lipa Khums</span><span data-en>Pay Khums</span><span data-ar>ادفع الخمس</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZAKAT -->
+      <div class="g-card">
+        <div class="g-popular-badge"><span data-sw>Maarufu</span><span data-en>Popular</span><span data-ar>الأكثر</span></div>
+        <div class="g-card-side side-teal">
+          <div class="g-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="#0f6e56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="17" cy="6" r="1" fill="#1d9e75"/><circle cx="19.5" cy="9" r=".8" fill="#1d9e75"/>
+            </svg>
+          </div>
+          <span class="g-card-arabic">الزكاة</span>
+        </div>
+        <div class="g-card-body">
+          <div class="g-card-top">
+            <h3 class="g-card-title">Zakat</h3>
+            <div class="zakat-type-row">
+              <button class="zakat-type-btn active" onclick="setZakatCard(this,'maal')"><span data-sw>Zakatul Maal</span><span data-en>Zakatul Maal</span><span data-ar>زكاة المال</span></button>
+              <button class="zakat-type-btn" onclick="setZakatCard(this,'fitra')"><span data-sw>Zakatul Fitra</span><span data-en>Zakatul Fitra</span><span data-ar>زكاة الفطرة</span></button>
+            </div>
+            <p class="g-card-desc" id="zakat-card-desc">
+              <span data-sw>Nguzo ya tatu ya Uislamu — farila inayosafisha mali na moyo. Zakat ya Maal ni 2.5% ya mali iliyozidi kizingiti cha Nisab kwa mwaka kamili. Sabeel inakusaidia kuhesabu na kupeleka kwa taasisi zinazohudumia maskini wa jamii yako moja kwa moja.</span>
+              <span data-en>The third pillar of Islam — an obligation that purifies wealth and heart alike. Zakatul Maal is 2.5% of wealth held above the Nisab threshold for a full lunar year. Sabeel helps you calculate and deliver it directly to institutions serving your community's poor.</span>
+              <span data-ar>الركن الثالث من الإسلام — فريضة تطهّر المال والروح معاً. زكاة المال هي ٢.٥٪ من المال الذي تجاوز النصاب وحال عليه الحول. يساعدك سبيل على الحساب والتوصيل مباشرةً.</span>
+            </p>
+          </div>
+          <div class="g-card-foot">
+            <span class="g-card-tag" id="zakat-card-tag">2.5% · Nisab</span>
+            <button class="btn-give btn-give-green" id="zakat-card-btn" onclick="openZakatModal()">
+              <span data-sw>Lipa Zakat</span><span data-en>Pay Zakat</span><span data-ar>أدِّ الزكاة</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SADAKAH -->
+      <div class="g-card">
+        <div class="g-card-side side-green">
+          <div class="g-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#1e7a3b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="g-card-arabic">الصدقة</span>
+        </div>
+        <div class="g-card-body">
+          <div class="g-card-top">
+            <h3 class="g-card-title">Sadakah</h3>
+            <p class="g-card-desc">
+              <span data-sw>Sadakah si lazima — ni upendo unaotiririka bila kikomo. Toa wakati wowote, kwa kiasi chochote, na kwa sababu yoyote nzuri: misaada ya dharura, elimu ya watoto, huduma ya msikiti, au kampeni maalum. Mwenyezi Mungu anaona kila toa, hata dogo, na hakulipuki kamwe.</span>
+              <span data-en>Sadaqah is not obligatory — it is love in motion, given freely at any moment. Support emergency relief, children's education, mosque services, or a special campaign. No amount is too small. Allah sees every act of giving and never lets any of it go unrewarded.</span>
+              <span data-ar>الصدقة ليست فريضة — بل هي محبة تفيض في كل وقت. ادعم إغاثة طارئة أو تعليم أطفال أو مسجداً. لا يوجد مبلغ صغير؛ الله يرى كل عطاء ولا يُضيّعه أبداً.</span>
+            </p>
+          </div>
+          <div class="g-card-foot">
+            <span class="g-card-tag"><span data-sw>Kiasi chochote</span><span data-en>Any amount</span><span data-ar>أي مبلغ</span></span>
+            <button class="btn-give btn-give-green" onclick="openModal('modal-sadakah')">
+              <span data-sw>Toa Sadakah</span><span data-en>Give Sadaqah</span><span data-ar>تصدّق</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIDYAH -->
+      <div class="g-card">
+        <div class="g-card-side side-gold">
+          <div class="g-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v18M3 6l9-3 9 3M5 11l-2 4h4l-2-4zM19 11l-2 4h4l-2-4z" stroke="#a07010" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21h14" stroke="#a07010" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="g-card-arabic" style="color:rgba(100,70,0,0.35);">الفدية</span>
+        </div>
+        <div class="g-card-body">
+          <div class="g-card-top">
+            <h3 class="g-card-title">Fidyah</h3>
+            <p class="g-card-desc">
+              <span data-sw>Fidyah ni fidia ya Kisheria kwa ajili ya kila siku ya kufunga iliyokosekana kwa sababu ya ugonjwa wa kudumu au uzee — hali ambapo kufunga hakuwezekani na hakuwezekani pia kulipwa baadaye. Sabeel inakusaidia kuhesabu kiasi sahihi kulingana na mwongozo wa Marja' wako na kuwasilisha kwa usahihi.</span>
+              <span data-en>Fidyah is the Sharia expiation for each fast missed due to chronic illness or old age — situations where fasting was impossible and cannot be made up. Sabeel helps you calculate the exact amount according to your Marja's guidance and deliver it with precision.</span>
+              <span data-ar>الفدية هي الكفارة الشرعية عن كل يوم صيام فاته بسبب مرض مزمن أو شيخوخة — حالات يتعذر فيها الصيام ولا يمكن قضاؤه. يساعدك سبيل على حساب المبلغ الدقيق وتسليمه بدقة.</span>
+            </p>
+          </div>
+          <div class="g-card-foot">
+            <span class="g-card-tag tag-gold"><span data-sw>Kwa kila siku</span><span data-en>Per missed day</span><span data-ar>عن كل يوم</span></span>
+            <button class="btn-give btn-give-gold" onclick="openModal('modal-fidyah')">
+              <span data-sw>Hesabu Fidyah</span><span data-en>Calculate Fidyah</span><span data-ar>احسب الفدية</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAASUMINA — full width -->
+      <div class="g-card card-highlight card-full">
+        <div class="g-card-side side-gold">
+          <div class="g-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l6 5v11l-6 4-6-4V7l6-5z" stroke="#a07010" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 10l3 3 3-3" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="7" r="1.2" fill="#c9a84c"/>
+            </svg>
+          </div>
+          <span class="g-card-arabic" style="color:rgba(100,70,0,0.35);">المعصومين</span>
+        </div>
+        <div class="g-card-body">
+          <div class="g-card-top">
+            <h3 class="g-card-title">
+              <span data-sw>Maasumina AS</span>
+              <span data-en>Maasumina AS</span>
+              <span data-ar>المعصومين عليهم السلام</span>
+            </h3>
+            <p class="g-card-desc">
+              <span data-sw>Toa kwa ajili ya Ahlul Bayt na uzingatie fadhila ya utume wa maasumina. Kila msaada husaidia kuhifadhi mirathi ya msingi wa imani, elimu, na huduma kwa jamii ya Kiislamu. Utoaji huu unasaidia shughuli za kidini, utafiti, na maktaba zinazoeneza maarifa ya Ahlul Bayt kwa vizazi vijavyo.</span>
+              <span data-en>Support the sacred trust of Ahlul Bayt. Your gift helps preserve the legacy and guidance of the infallibles — sustaining faith, scholarship, and service across the Muslim community. This giving supports religious activities, research, and libraries spreading Ahlul Bayt knowledge for future generations.</span>
+              <span data-ar>ادعم أمانة أهل البيت المقدسة. تبرعك يحفظ إرث المعصومين وهدايتهم — ويديم الإيمان والعلم والخدمة في المجتمع الإسلامي. يدعم هذا العطاء الأنشطة الدينية والبحث والمكتبات التي تنشر علوم أهل البيت للأجيال القادمة.</span>
+            </p>
+          </div>
+          <div class="g-card-foot">
+            <span class="g-card-tag tag-gold"><span data-sw>Ni imani ya wateule</span><span data-en>A sacred trust</span><span data-ar>أمانة مقدسة</span></span>
+            <button class="btn-give btn-give-gold" onclick="openModal('modal-maasumina')">
+              <span data-sw>Natoa Kwa Maasumina</span>
+              <span data-en>Give for Maasumina</span>
+              <span data-ar>تبرع للمعصومين</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━━ FOOTER ━━━━━━ -->
+<footer>
+  <div class="ft-main"><div class="ct"><div class="ft-g">
+    <div>
+      <span class="ft-logo">SABEEL</span>
+      <p class="ft-desc"><span data-sw>Jukwaa la kidijitali la utoaji wa Kiislamu kwa waumini wa Afrika Mashariki. Salama, uwazi, na imani ya kweli.</span><span data-en>The digital Islamic giving platform for believers across East Africa. Secure, transparent, and rooted in faith.</span><span data-ar>منصة العطاء الإسلامي الرقمية لمؤمني شرق أفريقيا.</span></p>
+      <span class="ft-ayah">وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ</span>
+      <div class="ft-soc">
+        <div class="ft-si" title="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+        <div class="ft-si" title="WhatsApp"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <div class="ft-si" title="Telegram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+      </div>
+    </div>
+    <div>
+      <span class="ft-h"><span data-sw>Utoaji</span><span data-en>Giving</span><span data-ar>العطاء</span></span>
+      <ul class="ft-ul">
+        <li><a href="#" onclick="openModal('modal-khums');return false;">Khums</a></li>
+        <li><a href="#" onclick="openModal('modal-zakat');return false;">Zakat</a></li>
+        <li><a href="#" onclick="openModal('modal-sadakah');return false;"><span data-sw>Sadakah</span><span data-en>Sadaqah</span><span data-ar>الصدقة</span></a></li>
+        <li><a href="#" onclick="openModal('modal-fidyah');return false;">Fidyah</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="ft-h"><span data-sw>Elimu</span><span data-en>Learn</span><span data-ar>تعلم</span></span>
+      <ul class="ft-ul">
+        <li><a href="khums.html"><span data-sw>Fiqh ya Khums</span><span data-en>Khums Fiqh</span><span data-ar>فقه الخمس</span></a></li>
+        <li><a href="zakat.html"><span data-sw>Maana ya Zakat</span><span data-en>What is Zakat</span><span data-ar>ما هي الزكاة</span></a></li>
+        <li><a href="marja.html"><span data-sw>Marja' ni Nani</span><span data-en>Who is Marja'</span><span data-ar>من هو المرجع</span></a></li>
+        <li><a href="#"><span data-sw>Maswali ya Kawaida</span><span data-en>FAQ</span><span data-ar>الأسئلة الشائعة</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="ft-h"><span data-sw>Mawasiliano</span><span data-en>Contact</span><span data-ar>تواصل</span></span>
+      <ul class="ft-ul">
+        <li><a href="mailto:info@sabeel.co.tz">info@sabeel.co.tz</a></li>
+        <li><a href="tel:+255700000000">+255 700 000 000</a></li>
+        <li><a href="#">Arusha, Tanzania</a></li>
+      </ul>
+      <div style="margin-top:1.3rem;">
+        <span class="ft-h"><span data-sw>App ya Simu</span><span data-en>Mobile App</span><span data-ar>تطبيق الجوال</span></span>
+        <div class="app-store-row">
+          <a href="#" class="app-badge-img-only"><img src="images/buttons/app-store-button.png" alt="App Store" class="app-icon-img-btn"></a>
+          <a href="#" class="app-badge-img-only"><img src="images/buttons/google-play-button.svg" alt="Google Play" class="app-icon-img-btn"></a>
+        </div>
+      </div>
+    </div>
+  </div></div></div>
+  <div class="ft-pay"><div class="ct"><div class="ft-pi">
+    <span class="ft-pl"><span data-sw>Njia za Malipo</span><span data-en>Accepted Payments</span><span data-ar>طرق الدفع</span></span>
+    <div class="ft-ps">
+      <a href="#" class="ft-pc-img-btn"><img src="images/buttons/mpesa-button.svg" alt="M-Pesa" class="ft-pc-img-icon"></a>
+      <a href="#" class="ft-pc-img-btn"><img src="images/buttons/tigo-pesa-button.svg" alt="Tigo Pesa" class="ft-pc-img-icon"></a>
+      <a href="#" class="ft-pc-img-btn"><img src="images/buttons/airtel-button.svg" alt="Airtel Money" class="ft-pc-img-icon"></a>
+      <a href="#" class="ft-pc-img-btn"><img src="images/buttons/bank-button.svg" alt="Bank" class="ft-pc-img-icon"></a>
+    </div>
+  </div></div></div>
+  <div class="ft-bot"><div class="ct"><div class="ft-bi">
+    <span class="ft-cp">© 2025 Sabeel App. <span data-sw>Haki zote zimehifadhiwa.</span><span data-en>All rights reserved.</span><span data-ar>جميع الحقوق محفوظة.</span></span>
+    <div class="ft-leg">
+      <a href="privacy.html"><span data-sw>Faragha</span><span data-en>Privacy</span><span data-ar>الخصوصية</span></a>
+      <a href="terms.html"><span data-sw>Masharti</span><span data-en>Terms</span><span data-ar>الشروط</span></a>
+      <a href="security.html"><span data-sw>Usalama</span><span data-en>Security</span><span data-ar>الأمان</span></a>
+    </div>
+    <span class="ft-sig">سبيل — طريق الخير</span>
+  </div></div></div>
+</footer>
+
+<!-- ══════════════ MODALS ══════════════ -->
+
+<!-- KHUMS -->
+<div class="ov" id="modal-khums" onclick="closeBg(event,'modal-khums')">
+  <div class="modal">
+    <div class="m-bar cb-kh"></div>
+    <div class="m-in">
+      <!-- Desktop side panel -->
+      <div class="m-side side-green">
+        <div class="m-side-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M3 21h18M5 21V10l7-7 7 7v11M10 21v-4h4v4" stroke="#1e7a3b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 10.5C9 9.12 10.34 8 12 8s3 1.12 3 2.5" stroke="#27a050" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="m-side-arabic">الخُمس</span>
+      </div>
+      <!-- Content -->
+      <div class="m-content">
+        <button class="m-x" onclick="closeModal('modal-khums')">✕</button>
+        <span class="m-ey"><span data-sw>Wajibu wa Kidini</span><span data-en>Religious Obligation</span><span data-ar>واجب ديني</span></span>
+        <h3 class="m-ttl">Khums</h3>
+        <span class="m-arl">الخُمس — خُمس الفائض</span>
+        <p class="m-desc"><span data-sw>Chagua kiasi cha kulipa Khums yako ya mwaka.</span><span data-en>Select the amount for your annual Khums payment.</span><span data-ar>اختر المبلغ لدفع خُمسك السنوي.</span></p>
+        <div class="pay-step-header">
+          <span class="pay-step-status"></span>
+          <div class="pay-stepper">
+            <span class="pay-step active"><span class="p-dot"></span><span data-sw>Hatua 1</span><span data-en>Step 1</span><span data-ar>الخطوة 1</span></span>
+            <span class="pay-step"><span class="p-dot"></span><span data-sw>Hatua 2</span><span data-en>Step 2</span><span data-ar>الخطوة 2</span></span>
+          </div>
+        </div>
+        <div class="pay-step-panel active" data-step="1">
+          <div class="amt-g">
+            <button class="amt-b" onclick="selAmt(this)">TZS 50,000</button>
+            <button class="amt-b" onclick="selAmt(this)">TZS 100,000</button>
+            <button class="amt-b on" onclick="selAmt(this)">TZS 200,000</button>
+            <button class="amt-b" onclick="selAmt(this)">TZS 500,000</button>
+            <button class="amt-b" onclick="selAmt(this)">TZS 1,000,000</button>
+            <button class="amt-b" onclick="selAmt(this)"><span data-sw>Nyingine</span><span data-en>Custom</span><span data-ar>مخصص</span></button>
+          </div>
+          <span class="m-lbl"><span data-sw>Au ingiza kiasi (TZS)</span><span data-en>Or enter amount (TZS)</span><span data-ar>أو أدخل مبلغاً</span></span>
+          <input type="number" class="m-inp" placeholder="0">
+          <span class="m-lbl"><span data-sw>Taasisi</span><span data-en>Institution</span><span data-ar>المؤسسة</span></span>
+          <select class="m-sel">
+            <option>Imam Ali Mosque — Dar es Salaam</option>
+            <option>Al-Abbas Islamic Centre</option>
+            <option>Al-Zahra Foundation</option>
+            <option>Al-Hussain Educational Centre</option>
+          </select>
+          <div class="m-div"></div>
+          <div class="m-row"><span class="k"><span data-sw>Idhinisho</span><span data-en>Approval</span><span data-ar>الاعتماد</span></span><span class="v" style="color:var(--g600);">Ijazah ✓</span></div>
+          <div class="m-div"></div>
+          <span class="m-lbl"><span data-sw>Njia ya Malipo</span><span data-en>Payment Method</span><span data-ar>طريقة الدفع</span></span>
+          <div class="pay-m">
+            <button class="pay-b on"><span class="pay-d" style="background:#00A651;"></span>M-Pesa</button>
+            <button class="pay-b"><span class="pay-d" style="background:#0099CC;"></span>Tigo Pesa</button>
+            <button class="pay-b"><span class="pay-d" style="background:#E4002B;"></span>Airtel</button>
+            <button class="pay-b"><span class="pay-d" style="background:#1e7a3b;"></span><span data-sw>Benki</span><span data-en>Bank</span><span data-ar>بنك</span></button>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-g btn-full" onclick="nextPaymentStep('modal-khums')"><span data-sw>Endelea</span><span data-en>Continue</span><span data-ar>متابعة</span></button>
+          </div>
+        </div>
+        <div class="pay-step-panel" data-step="2">
+          <span class="m-lbl"><span data-sw>Namba ya Simu</span><span data-en>Phone Number</span><span data-ar>رقم الهاتف</span></span>
+          <input type="tel" class="m-inp" name="phone" placeholder="+255 7XX XXX XXX">
+          <span class="m-lbl"><span data-sw>Anwani ya Barua Pepe</span><span data-en>Email Address</span><span data-ar>البريد الإلكتروني</span></span>
+          <input type="email" class="m-inp" name="email" placeholder="you@example.com">
+          <span class="m-lbl"><span data-sw>Promo Code</span><span data-en>Promo Code</span><span data-ar>رمز الخصم</span></span>
+          <input type="text" class="m-inp" name="promo_code" placeholder="PROMO2026">
+          <div class="btn-group">
+            <button class="btn btn-g btn-full" onclick="sendPromoCode('modal-khums')"><span data-sw>Tuma Promo</span><span data-en>Send Promo Code</span><span data-ar>إرسال رمز الخصم</span></button>
+            <button class="btn btn-dark btn-full" onclick="confirmPayment('modal-khums')"><span data-sw>Lipa Sasa</span><span data-en>Pay Now</span><span data-ar>ادفع الآن</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ZAKAT -->
+<div class="ov" id="modal-zakat" onclick="closeBg(event,'modal-zakat')">
+  <div class="modal">
+    <div class="m-bar cb-zk"></div>
+    <div class="m-in">
+      <div class="m-side side-teal">
+        <div class="m-side-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="#0f6e56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="17" cy="6" r="1" fill="#1d9e75"/><circle cx="19.5" cy="9" r=".8" fill="#1d9e75"/>
+          </svg>
+        </div>
+        <span class="m-side-arabic">الزكاة</span>
+      </div>
+      <div class="m-content">
+        <div class="pay-step-header">
+          <span class="pay-step-status"></span>
+          <div class="pay-stepper">
+            <span class="pay-step active"><span class="p-dot"></span><span data-sw>Hatua 1</span><span data-en>Step 1</span><span data-ar>الخطوة 1</span></span>
+            <span class="pay-step"><span class="p-dot"></span><span data-sw>Hatua 2</span><span data-en>Step 2</span><span data-ar>الخطوة 2</span></span>
+          </div>
+        </div>
+        <div class="pay-step-panel active" data-step="1">
+          <button class="m-x" onclick="closeModal('modal-zakat')">✕</button>
+          <span class="m-ey"><span data-sw>Nguzo ya Uislamu</span><span data-en>Pillar of Islam</span><span data-ar>ركن من أركان الإسلام</span></span>
+          <h3 class="m-ttl">Zakat</h3>
+          <span class="m-arl">الزكاة — تزكية المال</span>
+          <div class="zakat-modal-toggle">
+            <button class="active" id="zt-maal" onclick="switchZakatTab('maal')"><span data-sw>Zakatul Maal</span><span data-en>Zakatul Maal</span><span data-ar>زكاة المال</span></button>
+            <button id="zt-fitra" onclick="switchZakatTab('fitra')"><span data-sw>Zakatul Fitra</span><span data-en>Zakatul Fitra</span><span data-ar>زكاة الفطرة</span></button>
+          </div>
+          <div class="zakat-panel active" id="zp-maal">
+            <p class="m-desc"><span data-sw>Zakat ni 2.5% ya mali iliyozidi kizingiti cha Nisab kwa mwaka kamili wa kilimwengu.</span><span data-en>Zakat is 2.5% of wealth exceeding the Nisab threshold held for a full lunar year.</span><span data-ar>الزكاة ٢.٥٪ من المال الذي تجاوز النصاب وحال عليه الحول.</span></p>
+            <span class="m-lbl"><span data-sw>Jumla ya Mali (TZS)</span><span data-en>Total Wealth (TZS)</span><span data-ar>إجمالي الثروة</span></span>
+            <input type="number" class="m-inp" id="zakat-wealth" placeholder="0" oninput="calcZakat()">
+            <div class="calc-r">
+              <span class="calc-rl"><span data-sw>Zakat (2.5%)</span><span data-en>Zakat Due (2.5%)</span><span data-ar>الزكاة المستحقة</span></span>
+              <span class="calc-rv" id="zakat-result">TZS 0</span>
+            </div>
+            <div class="m-note"><span data-sw>Nisab ya sasa: takriban TZS 750,000. Thibitisha na Marja' wako.</span><span data-en>Current Nisab: approx. TZS 750,000 (85g gold). Verify with your Marja'.</span><span data-ar>النصاب الحالي: تقريباً 750,000 شلن. تأكد مع مرجعك.</span></div>
+          </div>
+          <div class="zakat-panel" id="zp-fitra">
+            <p class="m-desc"><span data-sw>Zakatul Fitra ni wajibu kwa kila Muislamu mwishoni mwa Ramadhani, kwa ajili ya kila mtu wa familia.</span><span data-en>Zakatul Fitra is obligatory at the end of Ramadan for every member of the household.</span><span data-ar>زكاة الفطرة واجبة في نهاية رمضان عن كل فرد في الأسرة.</span></p>
+            <span class="m-lbl"><span data-sw>Idadi ya Watu wa Familia</span><span data-en>Number of Household Members</span><span data-ar>عدد أفراد الأسرة</span></span>
+            <input type="number" class="m-inp" id="fitra-members" placeholder="1" oninput="calcFitra()" value="1">
+            <div class="calc-r">
+              <span class="calc-rl"><span data-sw>Fitra (TZS 9,000/mtu)</span><span data-en>Fitra Due (TZS 9,000/person)</span><span data-ar>الفطرة المستحقة</span></span>
+              <span class="calc-rv" id="fitra-result">TZS 9,000</span>
+            </div>
+            <div class="m-note"><span data-sw>Kiwango cha TZS 9,000/mtu ni mwongozo. Thibitisha na Marja' wako.</span><span data-en>Rate of TZS 9,000/person is a guide. Confirm with your Marja'.</span><span data-ar>المعدل إرشادي. تأكد مع مرجعك.</span></div>
+          </div>
+          <span class="m-lbl"><span data-sw>Taasisi</span><span data-en>Institution</span><span data-ar>المؤسسة</span></span>
+          <select class="m-sel">
+            <option>Imam Ali Mosque — Dar es Salaam</option>
+            <option>Al-Abbas Islamic Centre</option>
+            <option>Al-Zahra Foundation</option>
+          </select>
+          <span class="m-lbl"><span data-sw>Njia ya Malipo</span><span data-en>Payment Method</span><span data-ar>طريقة الدفع</span></span>
+          <div class="pay-m">
+            <button class="pay-b on"><span class="pay-d" style="background:#00A651;"></span>M-Pesa</button>
+            <button class="pay-b"><span class="pay-d" style="background:#0099CC;"></span>Tigo Pesa</button>
+            <button class="pay-b"><span class="pay-d" style="background:#E4002B;"></span>Airtel</button>
+            <button class="pay-b"><span class="pay-d" style="background:#1e7a3b;"></span><span data-sw>Benki</span><span data-en>Bank</span><span data-ar>بنك</span></button>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-g btn-full" onclick="nextPaymentStep('modal-zakat')"><span data-sw>Endelea</span><span data-en>Continue</span><span data-ar>متابعة</span></button>
+          </div>
+        </div>
+        <div class="pay-step-panel" data-step="2">
+          <span class="m-lbl"><span data-sw>Namba ya Simu</span><span data-en>Phone Number</span><span data-ar>رقم الهاتف</span></span>
+          <input type="tel" class="m-inp" name="phone" placeholder="+255 7XX XXX XXX">
+          <span class="m-lbl"><span data-sw>Anwani ya Barua Pepe</span><span data-en>Email Address</span><span data-ar>البريد الإلكتروني</span></span>
+          <input type="email" class="m-inp" name="email" placeholder="you@example.com">
+          <span class="m-lbl"><span data-sw>Promo Code</span><span data-en>Promo Code</span><span data-ar>رمز الخصم</span></span>
+          <input type="text" class="m-inp" name="promo_code" placeholder="PROMO2026">
+          <div class="btn-group">
+            <button class="btn btn-g btn-full" onclick="sendPromoCode('modal-zakat')"><span data-sw>Tuma Promo</span><span data-en>Send Promo Code</span><span data-ar>إرسال رمز الخصم</span></button>
+            <button class="btn btn-dark btn-full" onclick="confirmPayment('modal-zakat')"><span data-sw>Lipa Sasa</span><span data-en>Pay Now</span><span data-ar>ادفع الآن</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SADAKAH -->
+<div class="ov" id="modal-sadakah" onclick="closeBg(event,'modal-sadakah')">
+  <div class="modal">
+    <div class="m-bar cb-sd"></div>
+    <div class="m-in">
+      <div class="m-side side-green">
+        <div class="m-side-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#1e7a3b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="m-side-arabic">الصدقة</span>
+      </div>
+      <div class="m-content">
+        <div class="pay-step-header">
+          <span class="pay-step-status"></span>
+          <div class="pay-stepper">
+            <span class="pay-step active"><span class="p-dot"></span><span data-sw>Hatua 1</span><span data-en>Step 1</span><span data-ar>الخطوة 1</span></span>
+            <span class="pay-step"><span class="p-dot"></span><span data-sw>Hatua 2</span><span data-en>Step 2</span><span data-ar>الخطوة 2</span></span>
+          </div>
+        </div>
+        <div class="pay-step-panel active" data-step="1">
+          <button class="m-x" onclick="closeModal('modal-sadakah')">✕</button>
+          <span class="m-ey"><span data-sw>Utoaji wa Hiari</span><span data-en>Voluntary Giving</span><span data-ar>عطاء تطوعي</span></span>
+          <h3 class="m-ttl">Sadakah</h3>
+          <span class="m-arl">الصدقة — عطاء خالص</span>
+          <p class="m-desc"><span data-sw>Toa kwa hiari yako kwa sababu yoyote nzuri.</span><span data-en>Give voluntarily for any good cause.</span><span data-ar>أعطِ طوعاً لأي سبب حسن.</span></p>
+          <div class="amt-g">
+            <button class="amt-b" onclick="selAmt(this)">TZS 5,000</button>
+            <button class="amt-b" onclick="selAmt(this)">TZS 10,000</button>
+            <button class="amt-b on" onclick="selAmt(this)">TZS 20,000</button>
+            <button class="amt-b" onclick="selAmt(this)">TZS 50,000</button>
+            <button class="amt-b" onclick="selAmt(this)">TZS 100,000</button>
+            <button class="amt-b" onclick="selAmt(this)"><span data-sw>Nyingine</span><span data-en>Custom</span><span data-ar>مخصص</span></button>
+          </div>
+          <span class="m-lbl"><span data-sw>Au ingiza kiasi (TZS)</span><span data-en>Or enter amount</span><span data-ar>أو أدخل مبلغاً</span></span>
+          <input type="number" class="m-inp" placeholder="0">
+          <span class="m-lbl"><span data-sw>Peleka kwa</span><span data-en>Send to</span><span data-ar>أرسل إلى</span></span>
+          <select class="m-sel">
+            <option>Al-Abbas Islamic Centre</option>
+            <option>Al-Zahra Foundation</option>
+            <option>Al-Hussain Educational Centre</option>
+          </select>
+          <span class="m-lbl"><span data-sw>Njia ya Malipo</span><span data-en>Payment Method</span><span data-ar>طريقة الدفع</span></span>
+          <div class="pay-m">
+            <button class="pay-b on"><span class="pay-d" style="background:#00A651;"></span>M-Pesa</button>
+            <button class="pay-b"><span class="pay-d" style="background:#0099CC;"></span>Tigo Pesa</button>
+            <button class="pay-b"><span class="pay-d" style="background:#E4002B;"></span>Airtel</button>
+            <button class="pay-b"><span class="pay-d" style="background:#1e7a3b;"></span><span data-sw>Benki</span><span data-en>Bank</span><span data-ar>بنك</span></button>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-g btn-full" onclick="nextPaymentStep('modal-sadakah')"><span data-sw>Endelea</span><span data-en>Continue</span><span data-ar>متابعة</span></button>
+          </div>
+        </div>
+        <div class="pay-step-panel" data-step="2">
+          <span class="m-lbl"><span data-sw>Namba ya Simu</span><span data-en>Phone Number</span><span data-ar>رقم الهاتف</span></span>
+          <input type="tel" class="m-inp" name="phone" placeholder="+255 7XX XXX XXX">
+          <span class="m-lbl"><span data-sw>Anwani ya Barua Pepe</span><span data-en>Email Address</span><span data-ar>البريد الإلكتروني</span></span>
+          <input type="email" class="m-inp" name="email" placeholder="you@example.com">
+          <span class="m-lbl"><span data-sw>Promo Code</span><span data-en>Promo Code</span><span data-ar>رمز الخصم</span></span>
+          <input type="text" class="m-inp" name="promo_code" placeholder="PROMO2026">
+          <div class="btn-group">
+            <button class="btn btn-g btn-full" onclick="sendPromoCode('modal-sadakah')"><span data-sw>Tuma Promo</span><span data-en>Send Promo Code</span><span data-ar>إرسال رمز الخصم</span></button>
+            <button class="btn btn-dark btn-full" onclick="confirmPayment('modal-sadakah')"><span data-sw>Lipa Sasa</span><span data-en>Pay Now</span><span data-ar>ادفع الآن</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIDYAH -->
+<div class="ov" id="modal-fidyah" onclick="closeBg(event,'modal-fidyah')">
+  <div class="modal">
+    <div class="m-bar cb-fd"></div>
+    <div class="m-in">
+      <div class="m-side side-gold">
+        <div class="m-side-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v18M3 6l9-3 9 3M5 11l-2 4h4l-2-4zM19 11l-2 4h4l-2-4z" stroke="#a07010" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 21h14" stroke="#a07010" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="m-side-arabic" style="color:rgba(100,70,0,0.38);">الفدية</span>
+      </div>
+      <div class="m-content">
+        <div class="pay-step-header">
+          <span class="pay-step-status"></span>
+          <div class="pay-stepper">
+            <span class="pay-step active"><span class="p-dot"></span><span data-sw>Hatua 1</span><span data-en>Step 1</span><span data-ar>الخطوة 1</span></span>
+            <span class="pay-step"><span class="p-dot"></span><span data-sw>Hatua 2</span><span data-en>Step 2</span><span data-ar>الخطوة 2</span></span>
+          </div>
+        </div>
+        <div class="pay-step-panel active" data-step="1">
+          <button class="m-x" onclick="closeModal('modal-fidyah')">✕</button>
+          <span class="m-ey"><span data-sw>Fidia ya Kufunga</span><span data-en>Fast Expiation</span><span data-ar>كفارة الصيام</span></span>
+          <h3 class="m-ttl">Fidyah</h3>
+          <span class="m-arl">الفدية — كفارة الصيام الفائت</span>
+          <p class="m-desc"><span data-sw>Fidia ya kisheria kwa kila siku ya kufunga iliyokosekana kwa sababu ya ugonjwa au uzee.</span><span data-en>Sharia expiation for each missed fast due to chronic illness or old age.</span><span data-ar>الكفارة الشرعية عن كل يوم صيام فائت.</span></p>
+          <span class="m-lbl"><span data-sw>Idadi ya Siku Zilizokosekana</span><span data-en>Number of Missed Days</span><span data-ar>عدد الأيام الفائتة</span></span>
+          <input type="number" class="m-inp" id="fidyah-days" placeholder="0" oninput="calcFidyah()">
+          <div class="calc-r">
+            <span class="calc-rl"><span data-sw>Fidyah (TZS 7,500/siku)</span><span data-en>Fidyah (TZS 7,500/day)</span><span data-ar>الفدية (7,500 شلن/يوم)</span></span>
+            <span class="calc-rv" id="fidyah-result">TZS 0</span>
+          </div>
+          <div class="m-note"><span data-sw>Kiwango cha TZS 7,500/siku ni mwongozo. Thibitisha na Marja' wako.</span><span data-en>TZS 7,500/day is a guide. Confirm with your Marja'.</span><span data-ar>المعدل إرشادي. تأكد مع مرجعك.</span></div>
+          <span class="m-lbl"><span data-sw>Taasisi</span><span data-en>Institution</span><span data-ar>المؤسسة</span></span>
+          <select class="m-sel">
+            <option>Imam Ali Mosque — Dar es Salaam</option>
+            <option>Al-Abbas Islamic Centre</option>
+            <option>Al-Zahra Foundation</option>
+          </select>
+          <span class="m-lbl"><span data-sw>Njia ya Malipo</span><span data-en>Payment Method</span><span data-ar>طريقة الدفع</span></span>
+          <div class="pay-m">
+            <button class="pay-b on"><span class="pay-d" style="background:#00A651;"></span>M-Pesa</button>
+            <button class="pay-b"><span class="pay-d" style="background:#0099CC;"></span>Tigo Pesa</button>
+            <button class="pay-b"><span class="pay-d" style="background:#E4002B;"></span>Airtel</button>
+            <button class="pay-b"><span class="pay-d" style="background:#1e7a3b;"></span><span data-sw>Benki</span><span data-en>Bank</span><span data-ar>بنك</span></button>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-gold btn-full" onclick="nextPaymentStep('modal-fidyah')"><span data-sw>Endelea</span><span data-en>Continue</span><span data-ar>متابعة</span></button>
+          </div>
+        </div>
+        <div class="pay-step-panel" data-step="2">
+          <span class="m-lbl"><span data-sw>Namba ya Simu</span><span data-en>Phone Number</span><span data-ar>رقم الهاتف</span></span>
+          <input type="tel" class="m-inp" name="phone" placeholder="+255 7XX XXX XXX">
+          <span class="m-lbl"><span data-sw>Anwani ya Barua Pepe</span><span data-en>Email Address</span><span data-ar>البريد الإلكتروني</span></span>
+          <input type="email" class="m-inp" name="email" placeholder="you@example.com">
+          <span class="m-lbl"><span data-sw>Promo Code</span><span data-en>Promo Code</span><span data-ar>رمز الخصم</span></span>
+          <input type="text" class="m-inp" name="promo_code" placeholder="PROMO2026">
+          <div class="btn-group">
+            <button class="btn btn-g btn-full" onclick="sendPromoCode('modal-fidyah')"><span data-sw>Tuma Promo</span><span data-en>Send Promo Code</span><span data-ar>إرسال رمز الخصم</span></button>
+            <button class="btn btn-dark btn-full" onclick="confirmPayment('modal-fidyah')"><span data-sw>Lipa Sasa</span><span data-en>Pay Now</span><span data-ar>ادفع الآن</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAASUMINA -->
+<div class="ov" id="modal-maasumina" onclick="closeBg(event,'modal-maasumina')">
+  <div class="modal">
+    <div class="m-bar cb-fd"></div>
+    <div class="m-in">
+      <div class="m-side side-gold">
+        <div class="m-side-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l6 5v11l-6 4-6-4V7l6-5z" stroke="#a07010" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 10l3 3 3-3" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="7" r="1.2" fill="#c9a84c"/>
+          </svg>
+        </div>
+        <span class="m-side-arabic" style="color:rgba(100,70,0,0.38);">المعصومين</span>
+      </div>
+      <div class="m-content">
+        <button class="m-x" onclick="closeModal('modal-maasumina')">✕</button>
+        <span class="m-ey"><span data-sw>Amana Takatifu</span><span data-en>Sacred Trust</span><span data-ar>أمانة مقدسة</span></span>
+        <h3 class="m-ttl"><span data-sw>Maasumina AS</span><span data-en>Maasumina AS</span><span data-ar>المعصومين</span></h3>
+        <span class="m-arl">المعصومين — أمانة الهداية</span>
+        <p class="m-desc"><span data-sw>Toa kwa ajili ya Ahlul Bayt na uhifadhi urithi wa imani na elimu.</span><span data-en>Give for the Ahlul Bayt and preserve the legacy of faith and learning.</span><span data-ar>تبرع لأهل البيت واحفظ إرث الإيمان والعلم.</span></p>
+        <div class="amt-g">
+          <button class="amt-b" onclick="selAmt(this)">TZS 15,000</button>
+          <button class="amt-b" onclick="selAmt(this)">TZS 50,000</button>
+          <button class="amt-b on" onclick="selAmt(this)">TZS 100,000</button>
+          <button class="amt-b" onclick="selAmt(this)">TZS 250,000</button>
+          <button class="amt-b" onclick="selAmt(this)">TZS 500,000</button>
+          <button class="amt-b" onclick="selAmt(this)"><span data-sw>Nyingine</span><span data-en>Custom</span><span data-ar>مخصص</span></button>
+        </div>
+        <span class="m-lbl"><span data-sw>Au ingiza kiasi (TZS)</span><span data-en>Or enter amount</span><span data-ar>أو أدخل مبلغاً</span></span>
+        <input type="number" class="m-inp" placeholder="0">
+        <span class="m-lbl"><span data-sw>Chagua Maasuma</span><span data-en>Select Maasuma</span><span data-ar>اختر المعصوم</span></span>
+        <select class="m-sel">
+          <option value="imam-ali">Imam Ali (AS)</option>
+          <option value="imam-hasan">Imam Hasan (AS)</option>
+          <option value="imam-husayn">Imam Husayn (AS)</option>
+          <option value="imam-jafar">Imam Jafar al-Sadiq (AS)</option>
+          <option value="imam-muhammad">Imam Muhammad al-Baqir (AS)</option>
+        </select>
+        <div class="m-div"></div>
+        <span class="m-lbl"><span data-sw>Njia ya Malipo</span><span data-en>Payment Method</span><span data-ar>طريقة الدفع</span></span>
+        <div class="pay-m">
+          <button class="pay-b on"><span class="pay-d" style="background:#00A651;"></span>M-Pesa</button>
+          <button class="pay-b"><span class="pay-d" style="background:#0099CC;"></span>Tigo Pesa</button>
+          <button class="pay-b"><span class="pay-d" style="background:#E4002B;"></span>Airtel</button>
+          <button class="pay-b"><span class="pay-d" style="background:#1e7a3b;"></span><span data-sw>Benki</span><span data-en>Bank</span><span data-ar>بنك</span></button>
+        </div>
+        <button class="btn btn-gold btn-full"><span data-sw>Natoa Kwa Maasumina</span><span data-en>Give for Maasumina</span><span data-ar>تبرع للمعصومين</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div class="ov" id="modal-login" onclick="closeBg(event,'modal-login')">
+  <div class="modal">
+    <div class="m-bar" style="background:linear-gradient(90deg,var(--g900),var(--g700));"></div>
+    <div class="m-in">
+      <div class="m-content" style="width:100%;">
+        <button class="m-x" onclick="closeModal('modal-login')">✕</button>
+        <span class="m-ey">Sabeel</span>
+        <h3 class="m-ttl"><span data-sw>Ingia Akaunti</span><span data-en>Sign In</span><span data-ar>تسجيل الدخول</span></h3>
+        <span class="m-arl">دخول آمن إلى حسابك</span>
+        <span class="m-lbl"><span data-sw>Simu / Barua pepe</span><span data-en>Phone / Email</span><span data-ar>الهاتف / البريد الإلكتروني</span></span>
+        <input type="text" class="m-inp" placeholder="+255 7XX XXX XXX">
+        <span class="m-lbl"><span data-sw>Nywila</span><span data-en>Password</span><span data-ar>كلمة المرور</span></span>
+        <input type="password" class="m-inp" placeholder="••••••••">
+        <button class="btn btn-g btn-full"><span data-sw>Ingia</span><span data-en>Sign In</span><span data-ar>دخول</span></button>
+        <div style="text-align:center;margin-top:1rem;font-size:.8rem;color:var(--g400t);">
+          <span data-sw>Bado una akaunti? <a href="#" style="color:var(--g600);text-decoration:none;font-weight:700;">Jisajili</a></span>
+          <span data-en>No account yet? <a href="#" style="color:var(--g600);text-decoration:none;font-weight:700;">Register</a></span>
+          <span data-ar>ليس لديك حساب؟ <a href="#" style="color:var(--g600);text-decoration:none;font-weight:700;">سجّل الآن</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+  /* Zakat card selector */
+  let zakatCardType = 'maal';
+  const zakatDescs = {
+    maal: {
+      sw:'Nguzo ya tatu ya Uislamu — farila inayosafisha mali na moyo. Zakat ya Maal ni 2.5% ya mali iliyozidi kizingiti cha Nisab kwa mwaka kamili. Sabeel inakusaidia kuhesabu na kupeleka kwa taasisi zinazohudumia maskini wa jamii yako moja kwa moja.',
+      en:'The third pillar of Islam — an obligation that purifies wealth and heart alike. Zakatul Maal is 2.5% of wealth held above the Nisab threshold for a full lunar year. Sabeel helps you calculate and deliver it directly to institutions serving your community\'s poor.',
+      ar:'الركن الثالث من الإسلام — فريضة تطهّر المال والروح معاً. زكاة المال هي ٢.٥٪ من المال الذي تجاوز النصاب وحال عليه الحول.',
+      tag:'2.5% · Nisab',
+      btnSw:'Lipa Zakatul Maal', btnEn:'Pay Zakatul Maal', btnAr:'أدِّ زكاة المال'
+    },
+    fitra: {
+      sw:'Zakatul Fitra ni wajibu kwa kila Muislamu mwishoni mwa Ramadhani — sadaka ya mwili inayotangazwa furaha ya Eid. Toa kwa ajili ya kila mtu wa familia yako kabla ya swala ya Eid na uhakikishe ibada yako imekamilika kwa ukamilifu.',
+      en:'Zakatul Fitra is obligatory at the end of Ramadan for every household member — a charity of the body that seals the blessing of Eid. Give on behalf of each family member before the Eid prayer to complete your worship.',
+      ar:'زكاة الفطرة واجبة في نهاية رمضان عن كل فرد في الأسرة — صدقة الأبدان التي تُتمّ فرحة العيد. أدِّها عن كل فرد من أسرتك قبل صلاة العيد.',
+      tag:'TZS 9,000 / mtu',
+      btnSw:'Lipa Zakatul Fitra', btnEn:'Pay Zakatul Fitra', btnAr:'أدِّ زكاة الفطرة'
+    }
+  };
+
+  function setZakatCard(btn, type) {
+    zakatCardType = type;
+    document.querySelectorAll('.zakat-type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const d = zakatDescs[type];
+    const desc = document.getElementById('zakat-card-desc');
+    desc.querySelector('[data-sw]').textContent = d.sw;
+    desc.querySelector('[data-en]').textContent = d.en;
+    desc.querySelector('[data-ar]').textContent = d.ar;
+    document.getElementById('zakat-card-tag').textContent = d.tag;
+    const cardBtn = document.getElementById('zakat-card-btn');
+    cardBtn.querySelector('[data-sw]').textContent = d.btnSw;
+    cardBtn.querySelector('[data-en]').textContent = d.btnEn;
+    cardBtn.querySelector('[data-ar]').textContent = d.btnAr;
+  }
+
+  function openZakatModal() {
+    openModal('modal-zakat');
+    switchZakatTab(zakatCardType);
+  }
+
+  function switchZakatTab(tab) {
+    document.getElementById('zt-maal').classList.toggle('active', tab==='maal');
+    document.getElementById('zt-fitra').classList.toggle('active', tab==='fitra');
+    document.getElementById('zp-maal').classList.toggle('active', tab==='maal');
+    document.getElementById('zp-fitra').classList.toggle('active', tab==='fitra');
+  }
+
+  function calcZakat() {
+    const w = parseFloat(document.getElementById('zakat-wealth').value)||0;
+    document.getElementById('zakat-result').textContent = 'TZS '+(w*0.025).toLocaleString('en-TZ',{maximumFractionDigits:0});
+  }
+  function calcFitra() {
+    const m = parseInt(document.getElementById('fitra-members').value)||1;
+    document.getElementById('fitra-result').textContent = 'TZS '+(m*9000).toLocaleString('en-TZ',{maximumFractionDigits:0});
+  }
+  function calcFidyah() {
+    const d = parseInt(document.getElementById('fidyah-days').value)||0;
+    document.getElementById('fidyah-result').textContent = 'TZS '+(d*7500).toLocaleString('en-TZ',{maximumFractionDigits:0});
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="sw" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabeel — Elimu na Fiqh ya Khums</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Mtindo wa bango la picha */
+  .fiq-banner {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 16px 40px rgba(7, 26, 14, 0.06);
+    border: 1px solid rgba(62, 203, 112, 0.12);
+  }
+  .fiq-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.95);
+  }
+
+  /* Mtindo wa ziada wa kurasa za ndani */
+  .fiq-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .fiq-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid rgba(62,203,112,.12);
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(7,26,14,.02);
+    margin-bottom: 2rem;
+  }
+  .fiq-sidebar {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+  }
+  .fiq-h3 {
+    font-family: var(--fs);
+    font-size: 1.4rem;
+    color: var(--g800);
+    margin: 1.5rem 0 0.8rem;
+  }
+  .fiq-p {
+    font-size: 0.98rem;
+    color: var(--g600t);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+  .fiq-list {
+    margin: 1rem 0 1.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .fiq-list li {
+    font-size: 0.95rem;
+    color: var(--g600t);
+    line-height: 1.6;
+  }
+  .verse-box {
+    background: var(--g50);
+    border-right: 4px solid var(--g500);
+    border-left: 4px solid var(--g500);
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .verse-ar {
+    font-family: var(--fa);
+    font-size: 1.25rem;
+    color: var(--g800);
+    margin-bottom: 0.8rem;
+    direction: rtl;
+  }
+  @media(max-width: 920px) {
+    .fiq-grid {
+      grid-template-columns: 1fr;
+    }
+    .fiq-sidebar {
+      position: static;
+    }
+  }
+  @media(max-width: 640px) {
+    .fiq-banner {
+      height: 180px;
+      margin-bottom: 1.8rem;
+    }
+  }
+</style>
+</head>
+<body class="lang-sw">
+
+<!-- ━━ LANG STRIP ━━ -->
+<div class="ls">
+  <span class="ls-brand">Sabeel</span>
+  <div class="ls-btns">
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb on" onclick="setLang('sw')">SW</button>
+    <button class="lb" onclick="setLang('ar')">عربي</button>
+  </div>
+</div>
+
+<!-- ━━ NAV ━━ -->
+<nav id="mnav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C9.24 2 7 4.24 7 7c0 3.53 4.25 8.42 4.6 8.83.21.24.59.24.8 0C12.75 15.42 17 10.53 17 7c0-2.76-2.24-5-5-5z" stroke="white" stroke-width="1.4"/><circle cx="12" cy="7" r="2" stroke="white" stroke-width="1.2"/><path d="M5 20c0-2.21 3.13-4 7-4s7 1.79 7 4" stroke="rgba(255,255,255,.45)" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <span class="nav-wm">SABEEL</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#donations"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a></li>
+    <li><a href="index.html#campaign"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a></li>
+    <li><a href="index.html#calculator"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a></li>
+    <li><a href="#" class="n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a></li>
+  </ul>
+  <button id="ham-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- ━━ MOBILE MENU ━━ -->
+<div id="ham-menu">
+  <a href="index.html#donations" class="ham-link"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a>
+  <a href="index.html#campaign" class="ham-link"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a>
+  <a href="index.html#calculator" class="ham-link"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a>
+  <a href="#" class="ham-link n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a>
+</div>
+  </ul>
+</nav>
+
+<!-- ━━━━━━ CONTENT SECTION ━━━━━━ -->
+<section class="don-sec" style="padding: 8rem 0 4rem;">
+  <div class="ct">
+
+    <!-- Title Page Header -->
+    <div class="s-head fiu" style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="eyebrow"><span data-sw>Elimu ya Kidini</span><span data-en>Islamic Knowledge</span><span data-ar>معرفة دينية</span></span>
+      <h1 class="s-h">
+        <span data-sw>Fiqh ya <span class="ac">Khums</span></span>
+        <span data-en>Fiqh of <span class="ac">Khums</span></span>
+        <span data-ar>فقه <span class="ac">الخمس</span></span>
+      </h1>
+      <div class="sec-div" style="margin: 0.9rem auto 1.4rem;"></div>
+    </div>
+
+    <!-- Banner Image Area -->
+    <div class="fiq-banner fiu">
+      <img src="images/khums.webp" alt="Khums" onerror="this.onerror=null; this.src='images/khums.jpg';">
+    </div>
+
+    <div class="fiq-grid">
+      
+      <!-- MAIN TEXT -->
+      <div>
+        <div class="fiq-card fiu">
+          <span class="eyebrow"><span data-sw>Chimbuko la Kidini</span><span data-en>Quranic Foundation</span><span data-ar>الأصل القرآني</span></span>
+          <h2 class="s-h"><span data-sw>Khums kwenye Qur'ani</span><span data-en>Khums in the Qur'an</span><span data-ar>الخمس في القرآن الكريم</span></h2>
+          <div class="sec-div"></div>
+          
+          <div class="verse-box">
+            <p class="verse-ar">وَاعْلَمُوا أَنَّمَا غَنِمْتُمْ مِنْ شَيْءٍ فَأَنَّ Lِلَّهِ خُمُسَهُ وَلِلرَّسُولِ وَلِذِي الْقُرْبَىٰ وَالْيَتَامَىٰ وَالْمَسَاكِينِ وَابْنِ السَّبِيلِ</p>
+            <p class="fiq-p" style="font-style: italic; font-size: 0.9rem; text-align: center; margin-bottom: 0;">
+              <span data-sw>"Na jueni kwamba kila mlichoghanimia, basi asilimia ishirini (moja ya tano) ni kwa ajili ya Mwenyezi Mungu, na Mtume, na jamaa wa karibu, na yatima, na masikini, na msafiri..." — Al-Anfal: 41</span>
+              <span data-en>"And know that anything you obtain of war booty - then indeed, for Allah is one fifth of it and for the Messenger and for the [near] relatives and the orphans and the needy and the traveler..." — Al-Anfal: 41</span>
+              <span data-ar>"واعلموا أنما غنمتم من شيء فأن لله خمسه وللرسول ولذي القربى واليتامى والمساكين وابن السبيل..." — الأنفال: ٤١</span>
+            </p>
+          </div>
+
+          <p class="fiq-p">
+            <span data-sw>Khums ni neno la Kiarabu linalomaanisha "Moja ya Tano" (20%). Katika sheria za Kiislamu za Fiqh ya Jafari, ni wajibu kutoa 20% ya mapato yako ya ziada ya kila mwaka baada ya kutoa matumizi yote ya lazima ya kifamilia ya mwaka huo (Al-Ma'unah).</span>
+            <span data-en>Khums is an Arabic word meaning "One-Fifth" (20%). In Islamic law according to Jafari jurisprudence, it is a binding religious duty to pay 20% of one's surplus annual savings after deducting all necessary household and living expenses (Al-Ma'unah) for that year.</span>
+            <span data-ar>الخمس عبارة عن فريضة عبادية مالية، وتعني دفع ٢٠٪ (واحد من خمسة) من الفائض السنوي للمؤمن بعد اقتطاع كافة مؤونته ومصاريفه الحياتية المشروعة واللائقة بشأنه خلال العام.</span>
+          </p>
+        </div>
+
+        <div class="fiq-card fiu">
+          <span class="eyebrow"><span data-sw>Mgawanyo wa Khums</span><span data-en>How Khums is Divided</span><span data-ar>تقسيم الخمس</span></span>
+          <h2 class="s-h"><span data-sw>Sehemu Mbili Kuu</span><span data-en>The Two Shares</span><span data-ar>السهمان الرئيسيّان</span></h2>
+          <div class="sec-div"></div>
+          <p class="fiq-p">
+            <span data-sw>Khums imegawanyika katika sehemu mbili sawa (kila moja ikiwa 10% ya jumla ya ziada):</span>
+            <span data-en>Khums is divided into two equal parts (each representing 10% of the total surplus):</span>
+            <span data-ar>يُقسّم الخمس شرعاً إلى قسمين متساويين:</span>
+          </p>
+
+          <h3 class="fiq-h3"><span data-sw>1. Sahm al-Imam (Fungu la Imam)</span><span data-en>1. Sahm al-Imam (Imam's Share)</span><span data-ar>١. سهم الإمام (ع)</span></h3>
+          <p class="fiq-p">
+            <span data-sw>Nusu hii ni haki ya Imam wa zama (as). Wakati wa ghaibah yake, fungu hili linakabidhiwa kwa Marja' wa Kuigwa aliyethibitishwa (au wawakilishi wake waliojaliwa Ijazah) ili litumike katika kuendeleza Uislamu, kujenga shule za kidini, misaada ya jamii, na kuhifadhi mirathi ya dini.</span>
+            <span data-en>This half belongs to the Imam of the Time (as). During his occultation, it is handed to the verified Marja' al-Taqlid (or his authorized representatives with Ijazah) to be spent on Islamic education, establishing seminaries, public welfare, and propagating the faith.</span>
+            <span data-ar>هذا النصف هو حق الإمام المهدي (عجل الله فرجه)، وفي زمن الغيبة يُسلّم إلى المرجع الأعلم الجامع للشرائط أو وكيله المأذون بإجازة رسمية، ليُصرف في سبل خدمة الدين ونشر المعارف الإسلامية وإعلاء كلمة الله.</span>
+          </p>
+
+          <h3 class="fiq-h3"><span data-sw>2. Sahm al-Sadat (Fungu la Ma-Sayyid)</span><span data-en>2. Sahm al-Sadat (Sayyids' Share)</span><span data-ar>٢. سهم السادة</span></h3>
+          <p class="fiq-p">
+            <span data-sw>Nusu hii inatengwa maalum kwa ajili ya kuwasaidia mayatima, masikini, au wasafiri waliokwama ambao wanatoka katika ukoo wa Mtume Muhammad (saww) kupitia kwa Hazrat Bani Hashim. Ma-Sayyid hawaruhusiwi kupokea Zakat ya kawaida, hivyo hili ndilo fungu lililotengwa kwa ajili yao kulinda heshima yao.</span>
+            <span data-en>This half is allocated exclusively to support orphans, the poor, or stranded travelers belonging to the family of the Prophet Muhammad (saww) from Bani Hashim. Since Sayyids are religiously forbidden from receiving standard Zakat, this share ensures their dignity is preserved.</span>
+            <span data-ar>وهذا النصف الآخر يُعطى لفقراء السادة الهاشميين من أيتامهم ومساكينهم وأبناء السبيل منهم سدّاً لخلّتهم وحفظاً لكرامتهم، حيث يحرم عليهم أخذ الزكاة الواجبة عامةً.</span>
+          </p>
+        </div>
+
+        <div class="fiq-card fiu">
+          <span class="eyebrow"><span data-sw>Mali Zinazopaswa</span><span data-en>Subject to Khums</span><span data-ar>الأموال التي يجب فيها</span></span>
+          <h2 class="s-h"><span data-sw>Ni nini kinachotolewa Khums?</span><span data-en>What requires Khums?</span><span data-ar>الأموال الخاضعة للخمس</span></h2>
+          <div class="sec-div"></div>
+          <p class="fiq-p">
+            <span data-sw>Katika zama za sasa, aina kuu ya Khums inayowahusu watu wengi ni <strong>Faida ya Mapato na Biashara (Al-Arbah)</strong>. Hii inajumuisha:</span>
+            <span data-en>In the modern era, the most common type of Khums applicable to believers is <strong>Surplus Earnings and Business Profits</strong>. This includes:</span>
+            <span data-ar>في عصرنا الحالي، المورد الأكثر شيوعاً وعموماً للابتلاء هو <strong>أرباح المكاسب والوظائف</strong>. ويشمل ذلك:</span>
+          </p>
+          <ul class="fiq-list">
+            <li><span data-sw>Mishahara ya kazi baada ya kuondoa gharama za maisha za kila siku za mwaka huo.</span><span data-en>Salaries and wages left over after household expenses are deducted at the end of your annual Khums date.</span><span data-ar>الرواتب والأجور الشهرية المتبقية بعد طرح نفقات المعيشة السنوية.</span></li>
+            <li><span data-sw>Faida inayotokana na biashara na uwekezaji.</span><span data-en>Net profits gained from business enterprises, investments, or trade.</span><span data-ar>الأرباح الصافية الناتجة عن الأنشطة التجارية والاستثمارية.</span></li>
+            <li><span data-sw>Zawadi ambazo hazikutumiwa ndani ya mwaka wa Khums (kulingana na baadhi ya Maraji').</span><span data-en>Unused gifts or monetary presents kept until the next Khums anniversary (according to most rulings).</span><span data-ar>الهدايا القيمة غير المستخدمة خلال السنة الخمسية (وفقاً لفتاوى غالبية المراجع).</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SIDEBAR CALCULATOR -->
+      <div class="fiq-sidebar fiu">
+        <div class="kh-card" style="background: rgba(8,26,18,0.95); border: 1px solid rgba(209,179,84,.22);">
+          <span class="kh-lbl" style="color: var(--glt);"><span data-sw>Kikokotoo cha Haraka</span><span data-en>Quick Calculator</span><span data-ar>حاسبة سريعة</span></span>
+          <h3 class="s-h" style="color:var(--white); font-size: 1.35rem; margin-bottom: 1rem;"><span data-sw>Kokotoa Hapa</span><span data-en>Calculate Now</span><span data-ar>احسب الآن</span></h3>
+          
+          <span class="kh-lbl"><span data-sw>Mapato ya Mwaka (TZS)</span><span data-en>Annual Income (TZS)</span><span data-ar>الدخل السنوي (شلن)</span></span>
+          <input type="number" class="kh-in" id="income" placeholder="0" oninput="calcKhums()">
+          
+          <span class="kh-lbl"><span data-sw>Matumizi ya Lazima (TZS)</span><span data-en>Necessary Expenses (TZS)</span><span data-ar>النفقat ya Lazima (TZS)</span></span>
+          <input type="number" class="kh-in" id="expenses" placeholder="0" oninput="calcKhums()">
+          
+          <div class="kh-res">
+            <span class="kh-rl"><span data-sw>Khums Inayostahili</span><span data-en>Khums Due (20%)</span><span data-ar>الخمس المستحق</span></span>
+            <span class="kh-rv" id="khumsResult">TZS 0</span>
+          </div>
+          
+          <button class="btn btn-gold btn-full" onclick="openModal('modal-khums')">
+            <span data-sw>Toa Khums Sasa</span>
+            <span data-en>Pay Khums Now</span>
+            <span data-ar>ادفع الخمس الآن</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KHUMS MODAL -->
+<div class="ov" id="modal-khums" onclick="closeBg(event,'modal-khums')">
+  <div class="modal">
+    <div class="m-bar cb-kh"></div>
+    <div class="m-in">
+      <button class="m-x" onclick="closeModal('modal-khums')">✕</button>
+      <span class="m-ey"><span data-sw>Wajibu wa Kidini</span><span data-en>Religious Obligation</span><span data-ar>واجب ديني</span></span>
+      <h3 class="m-ttl">Khums</h3>
+      <span class="m-arl">الخُمس — خُمس الفائض</span>
+      <p class="m-desc"><span data-sw>Chagua kiasi cha kulipa Khums yako ya mwaka.</span><span data-en>Select the amount for your annual Khums payment.</span><span data-ar>اختر المبلغ لدفع خُمسك السنوي.</span></p>
+      <div class="pay-step-header">
+        <span class="pay-step-status"></span>
+        <div class="pay-stepper">
+          <span class="pay-step active"><span class="p-dot"></span><span data-sw>Hatua 1</span><span data-en>Step 1</span><span data-ar>الخطوة 1</span></span>
+          <span class="pay-step"><span class="p-dot"></span><span data-sw>Hatua 2</span><span data-en>Step 2</span><span data-ar>الخطوة 2</span></span>
+        </div>
+      </div>
+      <div class="pay-step-panel active" data-step="1">
+        <span class="m-lbl"><span data-sw>Ingiza kiasi (TZS)</span><span data-en>Enter amount (TZS)</span><span data-ar>أدخل مبلغاً (شلن)</span></span>
+        <input type="number" class="m-inp" id="modal-khums-amt" placeholder="0">
+        <span class="m-lbl"><span data-sw>Taasisi</span><span data-en>Institution</span><span data-ar>المؤسسة</span></span>
+        <select class="m-sel">
+          <option>Imam Ali Mosque — Dar es Salaam</option>
+          <option>Al-Abbas Islamic Centre</option>
+          <option>Al-Zahra Foundation</option>
+        </select>
+        <span class="m-lbl"><span data-sw>Njia ya Malipo</span><span data-en>Payment Method</span><span data-ar>طريقة الدفع</span></span>
+        <div class="pay-m">
+          <button class="pay-b on"><span class="pay-d" style="background:#00A651;"></span>M-Pesa</button>
+          <button class="pay-b"><span class="pay-d" style="background:#0099CC;"></span>Tigo Pesa</button>
+          <button class="pay-b"><span class="pay-d" style="background:#E4002B;"></span>Airtel Money</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-g btn-full" onclick="nextPaymentStep('modal-khums')"><span data-sw>Endelea</span><span data-en>Continue</span><span data-ar>متابعة</span></button>
+        </div>
+      </div>
+      <div class="pay-step-panel" data-step="2">
+        <span class="m-lbl"><span data-sw>Namba ya Simu</span><span data-en>Phone Number</span><span data-ar>رقم الهاتف</span></span>
+        <input type="tel" class="m-inp" name="phone" placeholder="+255 7XX XXX XXX">
+        <span class="m-lbl"><span data-sw>Anwani ya Barua Pepe</span><span data-en>Email Address</span><span data-ar>البريد الإلكتروني</span></span>
+        <input type="email" class="m-inp" name="email" placeholder="you@example.com">
+        <span class="m-lbl"><span data-sw>Promo Code</span><span data-en>Promo Code</span><span data-ar>رمز الخصم</span></span>
+        <input type="text" class="m-inp" name="promo_code" placeholder="PROMO2026">
+        <div class="btn-group">
+          <button class="btn btn-g btn-full" onclick="sendPromoCode('modal-khums')"><span data-sw>Tuma Promo</span><span data-en>Send Promo Code</span><span data-ar>إرسال رمز الخصم</span></button>
+          <button class="btn btn-dark btn-full" onclick="confirmPayment('modal-khums')"><span data-sw>Lipa Sasa</span><span data-en>Pay Now</span><span data-ar>ادفع الآن</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

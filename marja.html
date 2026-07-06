@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="sw" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabeel — Marja' ni Nani?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Mtindo wa ziada wa kurasa za ndani */
+  .fiq-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .fiq-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid rgba(62,203,112,.12);
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(7,26,14,.02);
+    margin-bottom: 2rem;
+  }
+  .fiq-sidebar {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+  }
+  .fiq-h3 {
+    font-family: var(--fs);
+    font-size: 1.4rem;
+    color: var(--g800);
+    margin: 1.5rem 0 0.8rem;
+  }
+  .fiq-p {
+    font-size: 0.98rem;
+    color: var(--g600t);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+  .fiq-list {
+    margin: 1rem 0 1.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .fiq-list li {
+    font-size: 0.95rem;
+    color: var(--g600t);
+    line-height: 1.6;
+  }
+  .verse-box {
+    background: var(--g50);
+    border-right: 4px solid var(--g500);
+    border-left: 4px solid var(--g500);
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .verse-ar {
+    font-family: var(--fa);
+    font-size: 1.25rem;
+    color: var(--g800);
+    margin-bottom: 0.8rem;
+    direction: rtl;
+  }
+  .badge-checklist {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .badge-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .badge-item:last-child {
+    margin-bottom: 0;
+  }
+  .badge-check {
+    color: var(--g400);
+    font-weight: bold;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  @media(max-width: 920px) {
+    .fiq-grid {
+      grid-template-columns: 1fr;
+    }
+    .fiq-sidebar {
+      position: static;
+    }
+  }
+</style>
+</head>
+<body class="lang-sw">
+
+<!-- ━━ LANG STRIP ━━ -->
+<div class="ls">
+  <span class="ls-brand">Sabeel</span>
+  <div class="ls-btns">
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb on" onclick="setLang('sw')">SW</button>
+    <button class="lb" onclick="setLang('ar')">عربي</button>
+  </div>
+</div>
+
+<!-- ━━ NAV ━━ -->
+<nav id="mnav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C9.24 2 7 4.24 7 7c0 3.53 4.25 8.42 4.6 8.83.21.24.59.24.8 0C12.75 15.42 17 10.53 17 7c0-2.76-2.24-5-5-5z" stroke="white" stroke-width="1.4"/><circle cx="12" cy="7" r="2" stroke="white" stroke-width="1.2"/><path d="M5 20c0-2.21 3.13-4 7-4s7 1.79 7 4" stroke="rgba(255,255,255,.45)" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <span class="nav-wm">SABEEL</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#donations"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a></li>
+    <li><a href="index.html#campaign"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a></li>
+    <li><a href="index.html#calculator"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a></li>
+    <li><a href="#" class="n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a></li>
+  </ul>
+  <button id="ham-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- ━━ MOBILE MENU ━━ -->
+<div id="ham-menu">
+  <a href="index.html#donations" class="ham-link"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a>
+  <a href="index.html#campaign" class="ham-link"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a>
+  <a href="index.html#calculator" class="ham-link"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a>
+  <a href="#" class="ham-link n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a>
+</div>
+
+<!-- ━━━━━━ CONTENT SECTION ━━━━━━ -->
+<section class="don-sec" style="padding: 8rem 0 4rem;">
+  <div class="ct">
+
+    <!-- Title Page Header -->
+    <div class="s-head fiu" style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="eyebrow"><span data-sw>Uongozi wa Kiroho</span><span data-en>Spiritual Leadership</span><span data-ar>القيادة الروحية</span></span>
+      <h1 class="s-h">
+        <span data-sw>Marja' ni <span class="ac">Nani?</span></span>
+        <span data-en>Who is a <span class="ac">Marja'?</span></span>
+        <span data-ar>من هو <span class="ac">المرجع؟</span></span>
+      </h1>
+      <div class="sec-div" style="margin: 0.9rem auto 1.4rem;"></div>
+    </div>
+
+    <div class="fiq-grid">
+      
+      <!-- MAIN TEXT -->
+      <div>
+        <div class="fiq-card fiu">
+          <span class="eyebrow"><span data-sw>Mamlaka ya Elimu</span><span data-en>Authority of Knowledge</span><span data-ar>مرجعية العلم</span></span>
+          <h2 class="s-h"><span data-sw>Dhana ya Marja' al-Taqlid</span><span data-en>Concept of Marja' al-Taqlid</span><span data-ar>مفهوم مرجع التقليد</span></h2>
+          <div class="sec-div"></div>
+
+          <div class="verse-box">
+            <p class="verse-ar">فَاسْأَلُوا أَهْلَ الذِّكْرِ إِنْ كُنْتُمْ لَا تَعْلَمُونَ</p>
+            <p class="fiq-p" style="font-style: italic; font-size: 0.9rem; text-align: center; margin-bottom: 0;">
+              <span data-sw>"...Basi waulizeni wenye ukumbusho (elimu) ikiwa nyinyi hamjui." — Al-Anbiya: 7</span>
+              <span data-en>"...So ask the people of the message if you do not know." — Al-Anbiya: 7</span>
+              <span data-ar>"...فاسألوا أهل الذكر إن كنتم لا تعلمون" — الأنبياء: ٧</span>
+            </p>
+          </div>
+
+          <p class="fiq-p">
+            <span data-sw><strong>Marja' al-Taqlid</strong> (kwa kifupi "Marja'") maana yake ni "Chanzo cha Kuigwa". Katika shule ya fikra ya Shia Ithna-Ashari, Marja' ni mwanachuoni mkuu wa ngazi ya juu (Ayatollah al-Uzma) ambaye amefikia daraja ya <strong>Ijtihad</strong> — uwezo wa kujitegemea kutoa hukumu za kisheria kutoka kwenye vyanzo vikuu (Qur'ani, Sunnah, Akili, na Makubaliano ya wanachuoni au Ijma).</span>
+            <span data-en>A <strong>Marja' al-Taqlid</strong> (literally meaning "Source of Emulation") is a supreme Islamic jurist (Ayatollah al-Uzma) in Shia Ithna-Ashari Islam who has attained the absolute level of <strong>Ijtihad</strong> — the expert capacity to independently derive Islamic rulings from their primary sources (the Qur'an, Sunnah, Intellect, and Consensus).</span>
+            <span data-ar><strong>مرجع التقليد</strong> هو الفقيه المجتهد الجامع للشرائط في المذهب الشيعي الإثني وعشري، وهو الذي بلغ رتبة <strong>الاجتهاد المطلق</strong>، أي القدرة العلمية على استنباط الأحكام الشرعية العملية من أدلتها التفصيلية (الكتاب الكريم، السنة النبوية الشريفة وروايات أهل البيت عليهم السلام، العقل، والإجماع).</span>
+          </p>
+          <p class="fiq-p">
+            <span data-sw>Kazi kubwa ya Marja' ni kuwaongoza waumini katika mambo ya sheria za kivitendo za kidini (Furu' al-Din) kama vile Swala, Funga, Khums, Zakat, na miamala ya kijamii, kupitia kitabu chake cha fatwa kiitwacho <em>Risalah al-Amaliyyah</em>.</span>
+            <span data-en>The core role of a Marja' is to guide believers in practical matters of faith and worship (Furu' al-Din) such as prayer, fasting, Khums, Zakat, and ethical transactions, primarily compiled in his book of jurisprudence called the <em>Risalah al-Amaliyyah</em>.</span>
+            <span data-ar>المهمة الأساسية للمرجع هي توجيه المؤمنين في أحكام عباداتهم ومعاملاتهم اليومية (فروع الدين) مثل الصلاة والصوم والخمس والزكاة والمعاملات المالية والاجتماعية، وذلك من خلال كتابه الفقهي المسمى بـ <em>الرسالة العملية</em>.</span>
+          </p>
+        </div>
+
+        <div class="fiq-card fiu">
+          <span class="eyebrow"><span data-sw>Umuhimu wa Taqlid</span><span data-en>Necessity of Taqlid</span><span data-ar>وجوب التقليد</span></span>
+          <h2 class="s-h"><span data-sw>Kwa Nini Tunafuata (Taqlid)?</span><span data-en>Why Do We Practice Taqlid?</span><span data-ar>لماذا نُقلّد؟</span></h2>
+          <div class="sec-div"></div>
+          <p class="fiq-p">
+            <span data-sw>Kila Muislamu ana wajibu wa kujua hukumu za dini yake. Katika masuala ya kisheria (Fiqh), mtu anaweza kuwa na moja kati ya njia tatu:</span>
+            <span data-en>Every Muslim is responsible for fulfilling their religious duties correctly. In practical laws (Fiqh), a believer generally has one of three paths:</span>
+            <span data-ar>يجب على كل مسلم مكلف معرفة أحكام دينه الفرعية، وتتحقق براءة ذمته بإحدى طرق ثلاث:</span>
+          </p>
+          <ul class="fiq-list">
+            <li><strong><span data-sw>Ijtihad:</span><span data-en>Ijtihad:</span><span data-ar>الاجتهاد:</span></strong> <span data-sw>Mtu awe mwanachuoni mwenye uwezo wa kujitolea sheria mwenyewe (kazi inayohitaji makumi ya miaka ya masomo).</span><span data-en>To become a qualified jurist oneself (requiring decades of specialized advanced research).</span><span data-ar>أن يدرس العلوم الدينية حتى يصل لدرجة الاجتهاد ويستنبط أحكامه بنفسه.</span></li>
+            <li><strong><span data-sw>Ihtiyat (Tahadhari):</span><span data-en>Ihtiyat (Precaution):</span><span data-ar>الاحتياط:</span></strong> <span data-sw>Kutenda kwa namna inayoridhisha fatwa za wanachuoni wote wakubwa (jambo gumu sana kwa mtu wa kawaida).</span><span data-en>To act with extreme precaution, satisfying the rulings of all living major jurists (extremely complex for laypersons).</span><span data-ar>أن يعمل بالاحتياط، وهو معرفة آراء جميع المجتهدين والعمل بما يضمن براءة الذمة (وهو عسير جداً).</span></li>
+            <li><strong><span data-sw>Taqlid (Kufuata):</span><span data-en>Taqlid (Emulation):</span><span data-ar>التقليد:</span></strong> <span data-sw>Kufuata maelekezo ya mtaalamu aliyebobea katika sheria (Marja'). Hii ni kanuni ya kiakili ya kurejea kwa mtaalamu katika kila nyanja ya maisha.</span><span data-en>To refer to the rulings of a qualified specialist (the Marja'). This is a logical rule followed in all aspects of life (consulting experts).</span><span data-ar>التقليد، وهو رجوع غير المتخصص (العامي) إلى المتخصص بالعلوم الشرعية (المرجع)، وهو المبدأ العقلائي المتبع في سائر شؤون الحياة.</span></li>
+          </ul>
+        </div>
+
+        <div class="fiq-card fiu">
+          <span class="eyebrow"><span data-sw>Mkataba na Ijazah</span><span data-en>Marja' & Charities</span><span data-ar>المرجعية والحقوق</span></span>
+          <h2 class="s-h"><span data-sw>Uhusiano kati ya Marja' na Sabeel</span><span data-en>How Marja' Relates to Sabeel</span><span data-ar>صلة المرجع بمنصة سبيل</span></h2>
+          <div class="sec-div"></div>
+          <p class="fiq-p">
+            <span data-sw>Khums ni mali ya Imam wa zama (as). Kulingana na Fiqh, hakuna taasisi inayoruhusiwa kukusanya au kugawanya Khums bila kuwa na <strong>Ijazah</strong> (idhini rasmi ya kisheria ya maandishi) kutoka kwa Marja' al-Taqlid.</span>
+            <span data-en>Khums is the sacred trust of the Imam of the Time (as). According to Jafari jurisprudence, no organization is permitted to collect or distribute Khums funds without holding an official written authorization called <strong>Ijazah</strong> directly from the Marja' al-Taqlid.</span>
+            <span data-ar>الحقوق الشرعية كالخمس هي أمانة ترجع للإمام المهدي (عج). ووفقاً للأحكام الشرعية، لا يجوز لأي جهة أو مؤسسة جباية هذه الأموال أو صرفها إلا إذا كانت تمتلك <strong>إجازة شرعية مكتوبة</strong> من مرجع التقليد.</span>
+          </p>
+          <p class="fiq-p">
+            <span data-sw>Sabeel inahakikisha kwamba taasisi zote zilizoorodheshwa kwa ajili ya kupokea Khums au Zakat zina Ijazah hai na zimeidhinishwa naye ma-Marja' wakuu (kama vile Ayatollah Sayyid Ali al-Sistani n.k.). Hii inampa mtoaji amani ya moyo kwamba wajibu kuwe kisheria umetimia.</span>
+            <span data-en>Sabeel ensures that all listed institutions on the platform for collecting Khums hold valid "Ijazah" and are strictly overseen by top Maraji' (such as Ayatollah Sayyid Ali al-Sistani). This guarantees the donor that their religious obligations are validly fulfilled.</span>
+            <span data-ar>تضمن منصة سبيل أن جميع المؤسسات المدرجة لاستلام الخمس تمتلك إجازات سارية المفعول وموثقة من قبل المراجع العظام (كسماحة السيد علي السيستاني وغيره). وهذا يمنح المتبرع طمأنينة تامة ببراءة ذمته شرعاً.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- SIDEBAR - QUALIFICATIONS -->
+      <div class="fiq-sidebar fiu">
+        <div class="kh-card" style="background: rgba(8,26,18,0.95); border: 1px solid rgba(209,179,84,.22);">
+          <span class="kh-lbl" style="color: var(--glt);"><span data-sw>Sifa za Kisheria</span><span data-en>Fiqh Qualifications</span><span data-ar>شروط مرجع التقليد</span></span>
+          <h3 class="s-h" style="color:var(--white); font-size: 1.35rem; margin-bottom: 0.5rem;"><span data-sw>Sifa za Marja'</span><span data-en>Qualifications</span><span data-ar>شروط المرجعية</span></h3>
+          <p class="fiq-p" style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 1rem;">
+            <span data-sw>Mwanachuoni anayefuatwa ni lazima atimize sifa zifuatazo kulingana na sheria za Kiislamu:</span>
+            <span data-en>To be followed as a Marja', a jurist must meet these strict criteria established in Shia Islamic law:</span>
+            <span data-ar>يجب أن تتوفر في المجتهد الذي يُقلّد عدة شروط أساسية وفقاً للشرع الشريف:</span>
+          </p>
+
+          <div class="badge-checklist">
+            <div class="badge-item">
+              <span class="badge-check">✓</span>
+              <div>
+                <strong><span data-sw>A'lam (Mjuzi zaidi)</span><span data-en>A'lam (Most Learned)</span><span data-ar>الأعلمية</span></strong>
+                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.5);"><span data-sw>Awe mjuzi kuliko wanachuoni wote wa zama zake.</span><span data-en>Possesses superior knowledge compared to contemporary jurists.</span><span data-ar>أن يكون الأكثر علماً بين الفقهاء المعاصرين له.</span></p>
+              </div>
+            </div>
+            <div class="badge-item">
+              <span class="badge-check">✓</span>
+              <div>
+                <strong><span data-sw>Uadilifu ('Adalah)</span><span data-en>Adalah (Justice)</span><span data-ar>العدالة</span></strong>
+                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.5);"><span data-sw>Mwenye kucha Mungu na kuepuka dhambi kubwa.</span><span data-en>Pious, trustworthy, and free from persistent minor or major sins.</span><span data-ar>أن يكون تقياً ملتزماً بالواجبات وتاركاً للمحرمات.</span></p>
+              </div>
+            </div>
+            <div class="badge-item">
+              <span class="badge-check">✓</span>
+              <div>
+                <strong><span data-sw>Kuhai (Uhai)</span><span data-en>Life (Alive)</span><span data-ar>الحياة (الحي)</span></strong>
+                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.5);"><span data-sw>Taqlid huanza kwa Marja' aliye hai (sio aliyefariki).</span><span data-en>Initial emulation must begin with a living jurist.</span><span data-ar>أن يكون حياً عند بدء تقليده واتباع فتاواه.</span></p>
+              </div>
+            </div>
+            <div class="badge-item">
+              <span class="badge-check">✓</span>
+              <div>
+                <strong><span data-sw>Mwenye Akili Timamu</span><span data-en>Sanity & Intellect</span><span data-ar>العقل ورشد الإدراك</span></strong>
+                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.5);"><span data-sw>Asiwe na maradhi ya akili au usahaulifu mkubwa.</span><span data-en>Mentally sound, competent, with an active sharp memory.</span><span data-ar>أن يكون سليم العقل والذاكرة قادراً على الاستنباط.</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

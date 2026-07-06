@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="sw" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabeel — Masharti na Vigezo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .fiq-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid rgba(62,203,112,.12);
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(7,26,14,.02);
+    margin-bottom: 2rem;
+  }
+  .fiq-h3 {
+    font-family: var(--fs);
+    font-size: 1.3rem;
+    color: var(--g800);
+    margin: 1.8rem 0 0.8rem;
+  }
+  .fiq-p {
+    font-size: 0.98rem;
+    color: var(--g600t);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+</style>
+</head>
+<body class="lang-sw">
+
+<!-- ━━ LANG STRIP ━━ -->
+<div class="ls">
+  <span class="ls-brand">Sabeel</span>
+  <div class="ls-btns">
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb on" onclick="setLang('sw')">SW</button>
+    <button class="lb" onclick="setLang('ar')">عربي</button>
+  </div>
+</div>
+
+<!-- ━━ NAV ━━ -->
+<nav id="mnav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C9.24 2 7 4.24 7 7c0 3.53 4.25 8.42 4.6 8.83.21.24.59.24.8 0C12.75 15.42 17 10.53 17 7c0-2.76-2.24-5-5-5z" stroke="white" stroke-width="1.4"/><circle cx="12" cy="7" r="2" stroke="white" stroke-width="1.2"/><path d="M5 20c0-2.21 3.13-4 7-4s7 1.79 7 4" stroke="rgba(255,255,255,.45)" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <span class="nav-wm">SABEEL</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#donations"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a></li>
+    <li><a href="index.html#campaign"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a></li>
+    <li><a href="index.html#calculator"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a></li>
+    <li><a href="#" class="n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a></li>
+  </ul>
+  <button id="ham-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- ━━ MOBILE MENU ━━ -->
+<div id="ham-menu">
+  <a href="index.html#donations" class="ham-link"><span data-sw>Kutoa</span><span data-en>Donate</span><span data-ar>التبرع</span></a>
+  <a href="index.html#campaign" class="ham-link"><span data-sw>Kampeni</span><span data-en>Campaigns</span><span data-ar>الحملات</span></a>
+  <a href="index.html#calculator" class="ham-link"><span data-sw>Khums</span><span data-en>Khums</span><span data-ar>الخمس</span></a>
+  <a href="#" class="ham-link n-cta" onclick="openModal('modal-login');return false;"><span data-sw>Ingia</span><span data-en>Login</span><span data-ar>دخول</span></a>
+</div>
+
+<!-- ━━━━━━ CONTENT ━━━━━━ -->
+<section class="don-sec" style="padding: 8rem 0 4rem;">
+  <div class="ct" style="max-width: 900px;">
+    
+    <!-- Title Page Header -->
+    <div class="s-head fiu" style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="eyebrow"><span data-sw>Sera za Jukwaa</span><span data-en>Platform Policies</span><span data-ar>سياسات المنصة</span></span>
+      <h1 class="s-h">
+        <span data-sw>Masharti ya <span class="ac">Matumizi</span></span>
+        <span data-en>Terms of <span class="ac">Service</span></span>
+        <span data-ar>شروط <span class="ac">الخدمة</span></span>
+      </h1>
+      <div class="sec-div" style="margin: 0.9rem auto 1.4rem;"></div>
+    </div>
+
+    <div class="fiq-card fiu">
+      <span class="eyebrow"><span data-sw>Kukubaliana na Masharti</span><span data-en>Agreement</span><span data-ar>الاتفاقية</span></span>
+      <h2 class="s-h"><span data-sw>1. Makubaliano ya Jumla</span><span data-en>1. General Agreement</span><span data-ar>١. الاتفاقية العامة</span></h2>
+      <div class="sec-div"></div>
+      <p class="fiq-p">
+        <span data-sw>Kwa kufikia na kutumia Sabeel, unakubali kuwa umefungwa na Masharti haya ya Matumizi. Ikiwa hukubaliani na sehemu yoyote ya masharti haya, hupaswi kutumia mifumo yetu kufanya utoaji wa fedha. Jukwaa hili linatumika kama kiunganishi kati ya waumini na taasisi zilizothibitishwa za kidini.</span>
+        <span data-en>By accessing and using Sabeel, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you must not use our platform for processing donations. This platform acts strictly as an intermediary between believers and verified religious institutions.</span>
+        <span data-ar>من خلال دخولك واستخدامك لمنصة سبيل، فإنك توافق على الالتزام بشروط الخدمة هذه. إذا كنت لا توافق على أي جزء منها، فيجب عليك عدم استخدام المنصة لمعالجة التبرعات. تعمل هذه المنصة كوسيط بين المؤمنين والمؤسسات الدينية المعتمدة.</span>
+      </p>
+
+      <h3 class="fiq-h3"><span data-sw>2. Usindikaji wa Malipo na Kutorejeshwa</span><span data-en>2. Payments and Non-Refundability</span><span data-ar>٢. المدفوعات وعدم قابلية الاسترداد</span></h3>
+      <p class="fiq-p">
+        <span data-sw>Aina zote za utoaji wa kidini kama vile Khums, Zakat, Sadakah, na Fidyah zinazowasilishwa kupitia Sabeel huhamishiwa moja kwa moja kwenye akaunti za taasisi zilizochaguliwa na mtumiaji. Kwa sababu ya asili ya kiroho na kisheria ya utoaji huu (ambapo fedha huwekwa wakf au kugawiwa mara moja), <strong>hukumu za kisheria haziruhusu marejesho (refunds) yoyote</strong> mara baada ya malipo kukamilika.</span>
+        <span data-en>All religious contributions such as Khums, Zakat, Sadaqah, and Fidyah processed through Sabeel are transferred directly to the accounts of your selected religious institutions. Due to the spiritual and legal nature of these funds (which are immediately designated for religious causes or distributed), <strong>all completed transactions are strictly non-refundable</strong> under Islamic jurisprudence.</span>
+        <span data-ar>إن جميع الحقوق الشرعية والمساهمات كالخمس والزكاة والصدقة والفدية التي يتم دفعها عبر سبيل تحول مباشرة لحسابات المؤسسات المستفيدة المحددة. ونظراً للطبيعة الفقهية والشرعية لهذه الأموال، <strong>فإن المدفوعات غير قابلة للاسترداد نهائياً</strong> بمجرد اكتمال المعاملة.</span>
+      </p>
+
+      <h3 class="fiq-h3"><span data-sw>3. Majukumu ya Mtumiaji</span><span data-en>3. User Responsibilities</span><span data-ar>٣. مسؤوليات المستخدم</span></h3>
+      <p class="fiq-p">
+        <span data-sw>Wewe kama mtumiaji unawajibika kuhakikisha kuwa taarifa unazoingiza (kama vile kiasi cha fedha, akaunti ya simu, na taasisi unayolipa) ni sahihi. Sabeel haitahusika na hasara yoyote inayotokana na uzembe wa kuingiza namba au kiasi kisicho sahihi wakati wa kufanya miamala kupitia M-Pesa, Tigo Pesa, au Benki.</span>
+        <span data-en>As a user, you are responsible for ensuring that all entered details (including transaction amounts, phone numbers, and chosen institutions) are accurate. Sabeel is not liable for any financial loss resulting from user error during mobile money (M-Pesa, Tigo Pesa) or bank transfers.</span>
+        <span data-ar>بصفتك مستخدماً، فأنت مسؤول تماماً عن صحة البيانات المدخلة (المبالغ، أرقام الهواتف، والمؤسسة المختارة). لا تتحمل منصة سبيل أي مسؤولية عن أي خسائر ناجمة عن أخطاء إدخال البيانات أثناء المعاملات.</span>
+      </p>
+
+      <h3 class="fiq-h3"><span data-sw>4. Mabadiliko ya Masharti</span><span data-en>4. Modification of Terms</span><span data-ar>٤. تعديل الشروط</span></h3>
+      <p class="fiq-p">
+        <span data-sw>Sabeel ina haki ya kubadilisha masharti haya wakati wowote. Mabadiliko yoyote yataanza kufanya kazi mara tu yatakapowekwa kwenye ukurasa huu. Unaombwa kupitia ukurasa huu mara kwa mara ili kuwa na taarifa za karibuni.</span>
+        <span data-en>Sabeel reserves the right to modify these terms at any time. Any changes will take effect immediately upon being posted on this page. You are advised to review this page periodically for updates.</span>
+        <span data-ar>تحتفظ منصة سبيل بالحق في تعديل هذه الشروط في أي وقت، وتصبح التعديلات نافذة فور نشرها على هذه الصفحة. يرجى مراجعة هذه الصفحة بشكل دوري.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
