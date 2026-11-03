@@ -1,0 +1,6 @@
+{
+  "name": "Iraq Securities Commission - هيئة الأوراق المالية العراقية",
+  "description": "Official portal clone of the Iraqi Securities Commission (ISC). Regulating the capital market, oversight of the Iraq Stock Exchange (ISX), legislation, and investor awareness.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
